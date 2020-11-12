@@ -7,8 +7,4 @@
     <string name="bulk_up">Bulk Up</string>
     <string name="endurance">Endurance</string>
     <string name="flexibility">Flexibility</string>
-    <string name="username_hint">Username</string>
-    <string name="password_hint">Password</string>
-    <string name="password_confirm_hint">Confirm your password</string>
-    <string name="email_hint">Email</string>
 </resources>

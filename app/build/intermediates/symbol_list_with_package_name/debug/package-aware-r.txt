@@ -927,7 +927,6 @@ id easeIn
 id easeInOut
 id easeOut
 id edit_query
-id email_EditText
 id end
 id endurance_button
 id expand_activities_button
@@ -979,8 +978,6 @@ id packed
 id parent
 id parentPanel
 id parentRelative
-id password_EditText
-id password_confirm_EditText
 id path
 id pathRelative
 id percent
@@ -1062,7 +1059,6 @@ id unchecked
 id uniform
 id up
 id useLogo
-id username_EditText
 id visible
 id weight_loss_button
 id welcome_TextView
@@ -1152,16 +1148,12 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string app_name
 string bulk_up
-string email_hint
 string endurance
 string fitness_goal
 string flexibility
-string password_confirm_hint
-string password_hint
 string search_menu_title
 string status_bar_notification_info_overflow
 string strength_training
-string username_hint
 string weight_loss
 string welcome
 style AlertDialog_AppCompat
