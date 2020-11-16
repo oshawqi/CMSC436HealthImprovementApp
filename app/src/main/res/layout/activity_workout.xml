@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_main">
+
+    <TextView
+        android:id="@+id/createTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/workouts"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large">
+    </TextView>
+
+    <EditText
+        android:id="@+id/customWorkoutName"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="-15dp"
+        android:hint="@string/enter_a_workout_name"
+        android:layout_below="@id/createTitle">
+    </EditText>
+
+    <Button
+        android:id="@+id/addCustomWorkoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:layout_below="@id/customWorkoutName">
+    </Button>
+
+    <TextView
+        android:id="@+id/selectExisting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_an_existing_workout"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@id/addCustomWorkoutButton">
+    </TextView>
+
+    <ListView
+        android:id="@+id/listViewWorkouts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectExisting">
+    </ListView>
+
+
+
+
+</RelativeLayout>

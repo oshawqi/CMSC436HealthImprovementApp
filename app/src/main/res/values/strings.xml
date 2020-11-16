@@ -7,4 +7,8 @@
     <string name="bulk_up">Bulk Up</string>
     <string name="endurance">Endurance</string>
     <string name="flexibility">Flexibility</string>
+    <string name="workouts">Create a Custom Workout</string>
+    <string name="enter_a_workout_name">Enter a workout name</string>
+    <string name="add">Add</string>
+    <string name="select_an_existing_workout">Select an Existing Workout</string>
 </resources>
