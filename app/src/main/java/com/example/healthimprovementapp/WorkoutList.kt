@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.healthimprovementapp.R
-import com.example.healthimprovementapp.Workout
 
 class WorkoutList(private val context: Activity, private var workouts: List<Workout>) : ArrayAdapter<Workout>(context, R.layout.activity_workout_list, workouts) {
 

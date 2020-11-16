@@ -1,4 +1,4 @@
-package com.example.healthimprovementapp
+package com.example.healthimprovementapp.com.example.healthimprovementapp
 
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 
