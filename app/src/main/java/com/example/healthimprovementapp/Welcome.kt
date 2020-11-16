@@ -16,6 +16,9 @@ class Welcome : AppCompatActivity() {
     private lateinit var mEnduranceButton : Button
     private lateinit var mFlexibilityButton : Button
 
+    //Variable to hold the UID string from login screen
+    private lateinit var uid: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.welcome)
@@ -25,12 +28,22 @@ class Welcome : AppCompatActivity() {
         mEnduranceButton = findViewById<Button>(R.id.endurance_button)
         mFlexibilityButton = findViewById<Button>(R.id.flexibility_button)
 
+        //Acquire the UID from the intent LoginActivity passed in
+        uid = intent.getStringExtra(USER_ID)!!
+
         mWeightLossButton.setOnClickListener{
             Log.i(TAG, "Weight Loss Selected")
         }
 
         mBulkUpButton.setOnClickListener{
             Log.i(TAG, "Bulk Up Selected")
+
+            //Create an intent to open WorkoutActivity
+            val intent = Intent(applicationContext, WorkoutActivity::class.java)
+
+            intent.putExtra(USER_ID, uid)
+            intent.putExtra(WORKOUT_TYPE, BULK_UP)
+            startActivity(intent)
         }
 
         mEnduranceButton.setOnClickListener{
@@ -44,6 +57,9 @@ class Welcome : AppCompatActivity() {
 
     companion object {
         val TAG = "Project-Welcome"
+        val USER_ID = "USER_ID"
+        val WORKOUT_TYPE = "WORKOUT_TYPE"
+        val BULK_UP = "BULK_UP"
     }
 
 }
