@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HealthImprovementApp</string>
     <string name="welcome">Welcome!</string>
-    <string name="fitness_goal">Please chose a fitness goal from below</string>
+    <string name="fitness_goal">What would you like to do today?</string>
     <string name="weight_loss">Weight Loss</string>
     <string name="strength_training">Strength Training</string>
     <string name="bulk_up">Bulk Up</string>
@@ -17,4 +17,8 @@
     <string name="register">Register</string>
     <string name="account_login">Account Login</string>
     <string name="login">Login</string>
+    <string name="sets">Sets: </string>
+    <string name="weight">Weight: </string>
+    <string name="reps">Reps: </string>
+    <string name="submit_workout">Submit Workout</string>
 </resources>
