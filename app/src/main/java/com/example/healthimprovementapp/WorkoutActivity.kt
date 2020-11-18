@@ -54,10 +54,10 @@ class WorkoutActivity : AppCompatActivity() {
             val workout = workouts[i]
 
             //create an intent and package it up
-            val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)            //TODO: NEED TO FINISH THIS ACTIVITY
+            val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)//TODO: NEED TO FINISH THIS ACTIVITY
             intent.putExtra(WORKOUT_ID, workout.workoutId)
             intent.putExtra(WORKOUT_NAME, workout.workoutName)
-            intent.putExtra(WORKOUT_EXERCISES, workout.workoutExercises[0].toString())                          //TODO: FIGURE OUT HOW TO PASS THE ARRAYLIST
+            intent.putExtra(WORKOUT_EXERCISES, workout.workoutExercises[0].toString())//TODO: FIGURE OUT HOW TO PASS THE ARRAYLIST
             startActivity(intent)
         }
 

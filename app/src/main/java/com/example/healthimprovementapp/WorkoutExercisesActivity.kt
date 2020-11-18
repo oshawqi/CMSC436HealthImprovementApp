@@ -5,12 +5,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.healthimprovementapp.ExerciseListAdaptor
 import com.example.healthimprovementapp.R
+import com.google.firebase.database.FirebaseDatabase
 
 class WorkoutExercisesActivity : AppCompatActivity() {
 
     private lateinit var mListView : ListView
+    private lateinit var mListAdapter : ExerciseListAdaptor
     private lateinit var mSubmitButton : Button
+    private lateinit var mWorkout : Workout
 
  
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +27,22 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         mSubmitButton = findViewById(R.id.submitButton)
         mListView.addFooterView(mSubmitButton)
 
+        //Get workout from the intent
+        val workoutName = savedInstanceState?.getString(WORKOUT_NAME)
+        val workoutId = savedInstanceState?.getString(WORKOUT_ID)
+        val workoutExercises = savedInstanceState?.getString(WORKOUT_EXERCISES)//TODO change to array list when passed as a whole
+        mWorkout = Workout(workoutName!!, workoutId!!, ArrayList<Exercise>(0))//TODO change to proper arrayList
+
+        //Setup List Adapter
+        mListAdapter = ExerciseListAdaptor(this, R.layout.exercise_list, mWorkout)
+        mListView.adapter = mListAdapter
 
     }
 
+    companion object {
+        const val TAG = "HealthImprovementApp:Tag:WorkoutExercisesActivity:"
+        const val WORKOUT_NAME = "com.example.tesla.myhomelibrary.authorname"
+        const val WORKOUT_ID = "com.example.tesla.myhomelibrary.authorid"
+        const val WORKOUT_EXERCISES = "com.example.tesla.myhomelibrary.userid"
+    }
 }
