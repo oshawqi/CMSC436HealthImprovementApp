@@ -28,10 +28,10 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         mListView.addFooterView(mSubmitButton)
 
         //Get workout from the intent
-        val workoutName = savedInstanceState?.getString(WORKOUT_NAME)
-        val workoutId = savedInstanceState?.getString(WORKOUT_ID)
-        val workoutExercises = savedInstanceState?.getString(WORKOUT_EXERCISES)//TODO change to array list when passed as a whole
-        mWorkout = Workout(workoutName!!, workoutId!!, ArrayList<Exercise>(0))//TODO change to proper arrayList
+        val workoutName = intent.getStringExtra(WORKOUT_NAME)
+        val workoutId = intent.getStringExtra(WORKOUT_ID)
+        val exerciseList = intent.getSerializableExtra(WORKOUT_EXERCISES)//TODO change to array list when passed as a whole (This code should work. OS)
+        mWorkout = Workout(workoutName!!, workoutId!!, exerciseList as ArrayList<Exercise>)//TODO change to proper arrayList (This code should work. OS)
 
         //Setup List Adapter
         mListAdapter = ExerciseListAdaptor(this, R.layout.exercise_list, mWorkout)
@@ -40,9 +40,10 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val TAG = "HealthImprovementApp:Tag:WorkoutExercisesActivity:"
-        const val WORKOUT_NAME = "com.example.tesla.myhomelibrary.authorname"
-        const val WORKOUT_ID = "com.example.tesla.myhomelibrary.authorid"
-        const val WORKOUT_EXERCISES = "com.example.tesla.myhomelibrary.userid"
+        const val TAG = "HealthImprovementApp Tag"
+        const val WORKOUT_NAME = "WORKOUT_NAME"
+        const val WORKOUT_ID = "WORKOUT_ID"
+        const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
+        val USER_ID = "USER_ID"
     }
 }

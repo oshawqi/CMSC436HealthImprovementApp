@@ -31,6 +31,11 @@ class Welcome : AppCompatActivity() {
         //Acquire the UID from the intent LoginActivity passed in
         uid = intent.getStringExtra(USER_ID)!!
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
         mWeightLossButton.setOnClickListener{
             Log.i(TAG, "Weight Loss Selected")
         }
@@ -53,6 +58,8 @@ class Welcome : AppCompatActivity() {
         mFlexibilityButton.setOnClickListener{
             Log.i(TAG, "Flexibility Selected")
         }
+
+
     }
 
     companion object {

@@ -1,3 +1,5 @@
 package com.example.healthimprovementapp.com.example.healthimprovementapp
 
-data class Exercise (val id: String = "", val exerciseName: String = "")
+import java.io.Serializable
+
+data class Exercise (val exerciseName: String = "", val numSets: Int, val numReps: Int, val weight: Int) : Serializable
