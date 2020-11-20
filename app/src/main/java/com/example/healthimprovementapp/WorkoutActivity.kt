@@ -39,10 +39,7 @@ class WorkoutActivity : AppCompatActivity() {
         workouts = ArrayList()
 
         //TODO: Need to initialize UID here based on intent provided!!!!!!!
-        //
-        //CODE GOES HERE!!
-        //
-        //
+        uid = intent.getStringExtra(USER_ID).toString()
 
         buttonAddWorkout.setOnClickListener {
             addWorkout()
@@ -65,8 +62,6 @@ class WorkoutActivity : AppCompatActivity() {
             val workout = workouts[i]
             deleteWorkout(workout)
             true
-
-
         }
 
 
@@ -75,7 +70,7 @@ class WorkoutActivity : AppCompatActivity() {
     //TODO: Finish implementing this
     private fun addWorkout() {
         Toast.makeText(this, "Adding a custom workout...", Toast.LENGTH_LONG).show()
-        val name = editTextName.text.toString()
+        /*val name = editTextName.text.toString()
 
         if (!TextUtils.isEmpty(name)) {
             val id = databaseWorkouts.push().key
@@ -90,7 +85,7 @@ class WorkoutActivity : AppCompatActivity() {
         }
         else {
             Toast.makeText(this, "Please enter a workout name", Toast.LENGTH_LONG).show()
-        }
+        }*/
     }
 
     //TODO: Implement this
@@ -142,6 +137,7 @@ class WorkoutActivity : AppCompatActivity() {
         const val WORKOUT_NAME = "com.example.tesla.myhomelibrary.authorname"
         const val WORKOUT_ID = "com.example.tesla.myhomelibrary.authorid"
         const val WORKOUT_EXERCISES = "com.example.tesla.myhomelibrary.userid"
+        val USER_ID = "USER_ID"
     }
 
 

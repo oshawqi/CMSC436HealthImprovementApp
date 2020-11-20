@@ -21,7 +21,8 @@ class LoginActivity : AppCompatActivity() {
     private var loginBtn: Button? = null
     private var progressBar: ProgressBar? = null
 
-    private var mAuth: FirebaseAuth? = null
+    private lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

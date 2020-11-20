@@ -7,7 +7,7 @@
 
     <uses-sdk
         android:minSdkVersion="29"
-        android:targetSdkVersion="30" />
+        android:targetSdkVersion="29" />
 
     <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
     <!-- <uses-sdk android:minSdkVersion="14"/> -->

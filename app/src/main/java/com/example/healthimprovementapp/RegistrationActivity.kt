@@ -2,6 +2,7 @@ package com.example.healthimprovementapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -57,9 +58,10 @@ class RegistrationActivity : AppCompatActivity() {
                     val intent = Intent(this@RegistrationActivity, Welcome::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(applicationContext, "Registration failed! Please try again later", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(applicationContext, "Registration failed! Please try again later", Toast.LENGTH_LONG).show()
                     progressBar!!.visibility = View.GONE
                 }
-            }
+            }.addOnFailureListener { e ->
+            Toast.makeText(applicationContext, e.localizedMessage, Toast.LENGTH_LONG).show()}
     }
 }

@@ -601,7 +601,7 @@
     <string name="endurance">Endurance</string>
     <string name="enter_a_workout_name">Enter a workout name</string>
     <string name="firebase_database_url" translatable="false">https://cmsc436healthimprovementapp.firebaseio.com</string>
-    <string name="fitness_goal">Please chose a fitness goal from below</string>
+    <string name="fitness_goal">What would you like to do today?</string>
     <string name="flexibility">Flexibility</string>
     <string name="gcm_defaultSenderId" translatable="false">521275927252</string>
     <string name="google_api_key" translatable="false">AIzaSyAhKSRWrmMC2VIfHPtdo-hlz4_TwJ0ycNM</string>
@@ -613,10 +613,14 @@
     <string name="project_id" translatable="false">cmsc436healthimprovementapp</string>
     <string name="register">Register</string>
     <string name="register_new_account">Register new account</string>
+    <string name="reps">Reps: </string>
     <string name="search_menu_title">Search</string>
     <string name="select_an_existing_workout">Select an Existing Workout</string>
+    <string name="sets">Sets: </string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="strength_training">Strength Training</string>
+    <string name="submit_workout">Submit Workout</string>
+    <string name="weight">Weight: </string>
     <string name="weight_loss">Weight Loss</string>
     <string name="welcome">Welcome!</string>
     <string name="workouts">Create a Custom Workout</string>
