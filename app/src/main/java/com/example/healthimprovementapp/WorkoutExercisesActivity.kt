@@ -40,7 +40,7 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val TAG = "HealthImprovementApp:Tag:WorkoutExercisesActivity:"
+        const val TAG = "Mine-WorkoutExercisesActivity:"
         const val WORKOUT_NAME = "com.example.tesla.myhomelibrary.authorname"
         const val WORKOUT_ID = "com.example.tesla.myhomelibrary.authorid"
         const val WORKOUT_EXERCISES = "com.example.tesla.myhomelibrary.userid"

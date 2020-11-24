@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.com.example.healthimprovementapp.ExerciseList
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity
+import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutListAdaptor
 import com.google.firebase.database.*
 import java.lang.Exception
 import java.util.*
@@ -20,10 +21,12 @@ class WorkoutActivity : AppCompatActivity() {
     internal lateinit var listViewWorkouts: ListView
 
     internal lateinit var workouts: MutableList<Workout>
-
+    private lateinit var mWorkoutListAdaptor: WorkoutListAdaptor
     private lateinit var databaseWorkouts: DatabaseReference
 
-    private lateinit var uid: String
+    private var uid: String? = null //TODO (nothing) but I changed this to a nullable variable, it can definitely be changed back if needed
+    private var workoutType : String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +41,10 @@ class WorkoutActivity : AppCompatActivity() {
 
         workouts = ArrayList()
 
-        //TODO: Need to initialize UID here based on intent provided!!!!!!!
-        //
-        //CODE GOES HERE!!
-        //
-        //
+        //initialize UID and Workout Type here based on intent provided!!!!!!!
+        //TODO - possibly handle the event that the intent does not include one of these fields or is null
+        uid = intent.getStringExtra(USER_ID)
+        workoutType = intent.getStringExtra(WORKOUT_TYPE)
 
         buttonAddWorkout.setOnClickListener {
             addWorkout()
@@ -82,11 +84,14 @@ class WorkoutActivity : AppCompatActivity() {
 
             val workout = Workout(id!!, name, emptyList())
 
-            databaseWorkouts.child(uid).child(id).setValue(workout)
+            databaseWorkouts.child(uid!!).child(id).setValue(workout)
 
             editTextName.setText("")
 
             Toast.makeText(this, "Workout added", Toast.LENGTH_LONG).show()
+
+            //TODO -> add workout to list
+
         }
         else {
             Toast.makeText(this, "Please enter a workout name", Toast.LENGTH_LONG).show()
@@ -107,7 +112,7 @@ class WorkoutActivity : AppCompatActivity() {
                 workouts.clear()
 
                 var workout: Workout? = null
-                for (postSnapshot in dataSnapshot.child(uid).children) {
+                for (postSnapshot in dataSnapshot.child(uid!!).children) {
                     try {
                         workout = postSnapshot.getValue(Workout::class.java)
                     } catch (e: Exception) {
@@ -117,9 +122,7 @@ class WorkoutActivity : AppCompatActivity() {
                     }
                 }
 
-                val workoutListAdapter = ExerciseList(this@WorkoutActivity,
-                    workout!!.workoutExercises                                                       //TODO: Check this for functionality
-                )
+                val workoutListAdapter = WorkoutListAdaptor(this@WorkoutActivity ,workouts) //Reworked the workout manager to implement all of the exercises as a string and added an add function
                 listViewWorkouts.adapter = workoutListAdapter
             }
 
@@ -138,10 +141,16 @@ class WorkoutActivity : AppCompatActivity() {
 
     //TODO: These need to be changed to fit this project
     companion object {
-        const val TAG = "HealthImprovementApp Tag"
+        const val TAG = "Mine-WorkoutActivity: "
         const val WORKOUT_NAME = "com.example.tesla.myhomelibrary.authorname"
         const val WORKOUT_ID = "com.example.tesla.myhomelibrary.authorid"
         const val WORKOUT_EXERCISES = "com.example.tesla.myhomelibrary.userid"
+        val USER_ID = "USER_ID"
+        val WORKOUT_TYPE = "WORKOUT_TYPE"
+        val BULK_UP = "BULK_UP"
+        val WEIGHT_LOSS = "WEIGHT_LOSS"
+        val ENDURANCE = "ENDURANCE"
+        val FLEXIBILITY = "FLEXIBILITY"
     }
 
 
