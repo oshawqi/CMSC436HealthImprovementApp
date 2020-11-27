@@ -82,6 +82,13 @@ class WorkoutActivity : AppCompatActivity() {
         if (!TextUtils.isEmpty(name)) {
             val id = databaseWorkouts.push().key
 
+            //TODO -> use startActivityForResult to start an add exercises activity to populate the exercise list
+            //need to send it the UID and workout name so that they can be passed back to the onActivityResult method
+            val intent = Intent(this, AddWorkoutActivity::class.java)
+            intent.putExtra(WORKOUT_ID, id)
+            intent.putExtra(WORKOUT_NAME, name)
+            startActivity(intent)
+
             val workout = Workout(id!!, name, emptyList())
 
             databaseWorkouts.child(uid!!).child(id).setValue(workout)
@@ -122,8 +129,8 @@ class WorkoutActivity : AppCompatActivity() {
                     }
                 }
 
-                val workoutListAdapter = WorkoutListAdaptor(this@WorkoutActivity ,workouts) //Reworked the workout manager to implement all of the exercises as a string and added an add function
-                listViewWorkouts.adapter = workoutListAdapter
+                //val workoutListAdapter = WorkoutListAdaptor(this@WorkoutActivity ,workouts) //Reworked the workout manager to implement all of the exercises as a string and added an add function
+                //listViewWorkouts.adapter = workoutListAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {

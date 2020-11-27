@@ -21,4 +21,6 @@
     <string name="weight">Weight: </string>
     <string name="reps">Reps: </string>
     <string name="submit_workout">Submit Workout</string>
+    <string name="add_exercise">Add an exercise</string>
+    <string name="exercise_name">Exercise name: </string>
 </resources>

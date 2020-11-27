@@ -34,7 +34,7 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         mWorkout = Workout(workoutName!!, workoutId!!, ArrayList<Exercise>(0))//TODO change to proper arrayList
 
         //Setup List Adapter
-        mListAdapter = ExerciseListAdaptor(this, R.layout.exercise_list, mWorkout)
+        mListAdapter = ExerciseListAdaptor(this, mWorkout.workoutName)
         mListView.adapter = mListAdapter
 
     }
