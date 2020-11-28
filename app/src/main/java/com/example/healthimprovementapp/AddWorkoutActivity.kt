@@ -67,7 +67,6 @@ class AddWorkoutActivity : Activity() {
             if (mExerciseListAdapter.count == 0) {
                 //TODO -> add an alert dialog to ask if they want to submit a workout with no exercises
             } else {
-                //TODO -> package the exercises as an intent and set it as the result for the activity
                 val returnIntent = Intent(this, WorkoutActivity::class.java)
                 returnIntent.putExtra(WORKOUT_NAME, workout)
                 setResult(REQUEST_CODE, returnIntent)

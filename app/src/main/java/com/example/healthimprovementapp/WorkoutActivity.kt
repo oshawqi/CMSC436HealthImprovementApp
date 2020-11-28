@@ -21,7 +21,7 @@ class WorkoutActivity : AppCompatActivity() {
     private lateinit var databaseWorkouts: DatabaseReference
     private lateinit var workout: Workout
 
-    private var uid: String? = null //TODO (nothing) but I changed this to a nullable variable, it can definitely be changed back if needed
+    private var uid: String? = null
     private var workoutType : String? = null
 
 
@@ -39,7 +39,6 @@ class WorkoutActivity : AppCompatActivity() {
         workouts = ArrayList()
 
         //initialize UID and Workout Type here based on intent provided!!!!!!!
-        //TODO - possibly handle the event that the intent does not include one of these fields or is null
         uid = intent.getStringExtra(USER_ID)
         workoutType = intent.getStringExtra(WORKOUT_TYPE)
 
@@ -53,10 +52,9 @@ class WorkoutActivity : AppCompatActivity() {
             val workout = workouts[i]
 
             //create an intent and package it up
-            val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)//TODO: NEED TO FINISH THIS ACTIVITY
-            intent.putExtra(WORKOUT_ID, workout.workoutId)
-            intent.putExtra(WORKOUT_NAME, workout.workoutName)
-            intent.putExtra(WORKOUT_EXERCISES, workout.workoutExercises[0].toString())//TODO: FIGURE OUT HOW TO PASS THE ARRAYLIST
+            val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)//TODO: NEED TO FINISH THIS ACTIVITY. IT SHOULD LIST THE WORKOUT_NAME, EXERCISES, REPS, WEIGHTS, SETS,
+            // AND THEN GIVE A WAY FOR THE USER TO FILL IN WHAT THEY ACCOMPLISHED AND THEN SAVE IT TO THE DATABASE. A HISTORY OF OLD WORKOUTS SHOULD BE ADDED TO WELCOME.KT FOR VIEWING.
+            intent.putExtra(WORKOUT_NAME, workout)
             startActivity(intent)
         }
 
@@ -67,7 +65,6 @@ class WorkoutActivity : AppCompatActivity() {
         }
     }
 
-    //TODO: Finish implementing this - ensure a duplicate name is not entered. This func. should call a new activity.
     private fun addWorkout() {
         Toast.makeText(this, "Adding a custom workout...", Toast.LENGTH_LONG).show()
         val name = editTextName.text.toString()
@@ -75,13 +72,10 @@ class WorkoutActivity : AppCompatActivity() {
         if (!TextUtils.isEmpty(name)) {
             val id = databaseWorkouts.push().key
 
-            //TODO -> use startActivityForResult to start an add exercises activity to populate the exercise list
-            //need to send it the UID and workout name so that they can be passed back to the onActivityResult method
             val intent = Intent(this, AddWorkoutActivity::class.java)
             intent.putExtra(WORKOUT_ID, id)
             intent.putExtra(WORKOUT_NAME, name)
             startActivityForResult(intent, REQUEST_CODE)
-
 
             val exerciseListIntent = Intent(this, AddWorkoutActivity::class.java)
             exerciseListIntent.putExtra(WORKOUT_ID, id)
@@ -145,13 +139,6 @@ class WorkoutActivity : AppCompatActivity() {
     }
 
 
-
-
-
-
-
-
-    //TODO: These need to be changed to fit this project
     companion object {
         const val TAG = "HealthImprovementApp Tag"
         const val WORKOUT_NAME = "WORKOUT_NAME"
@@ -165,7 +152,5 @@ class WorkoutActivity : AppCompatActivity() {
         val ENDURANCE = "ENDURANCE"
         val FLEXIBILITY = "FLEXIBILITY"
     }
-
-
 
 }
