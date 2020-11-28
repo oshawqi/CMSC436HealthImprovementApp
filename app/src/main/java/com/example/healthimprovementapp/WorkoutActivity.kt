@@ -21,26 +21,26 @@ class WorkoutActivity : AppCompatActivity() {
     private lateinit var databaseWorkouts: DatabaseReference
     private lateinit var workout: Workout
 
-    private var uid: String? = null
-    private var workoutType : String? = null
+    private lateinit var uid: String
+    private lateinit var workoutType : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
 
-        //Access the workouts node in the database
-        databaseWorkouts = FirebaseDatabase.getInstance().getReference("workouts")
+        //Initializes UID and Workout Type here based on intent provided
+        uid = intent.getStringExtra(USER_ID) as String
+        workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
+
+        //Access the workout's node in the database
+        databaseWorkouts = FirebaseDatabase.getInstance().getReference(workoutType)
 
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText
         buttonAddWorkout = findViewById<View>(R.id.addCustomWorkoutButton) as Button
         listViewWorkouts = findViewById<View>(R.id.listViewWorkouts) as ListView
 
         workouts = ArrayList()
-
-        //initialize UID and Workout Type here based on intent provided!!!!!!!
-        uid = intent.getStringExtra(USER_ID)
-        workoutType = intent.getStringExtra(WORKOUT_TYPE)
 
         buttonAddWorkout.setOnClickListener {
             addWorkout()
@@ -60,6 +60,7 @@ class WorkoutActivity : AppCompatActivity() {
 
         listViewWorkouts.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
             val workout = workouts[i]
+            //TODO: Make a dialog box pop up asking "Are you sure you want to delete this workout?" before actually deleting it
             deleteWorkout(workout)
             true
         }

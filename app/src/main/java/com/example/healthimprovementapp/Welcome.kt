@@ -35,16 +35,18 @@ class Welcome : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        val intent = Intent(applicationContext, WorkoutActivity::class.java)
 
         mWeightLossButton.setOnClickListener{
             Log.i(TAG, "Weight Loss Selected")
+
+            intent.putExtra(USER_ID, uid)
+            intent.putExtra(WORKOUT_TYPE, WEIGHT_LOSS)
+            startActivity(intent)
         }
 
         mBulkUpButton.setOnClickListener{
             Log.i(TAG, "Bulk Up Selected")
-
-            //Create an intent to open WorkoutActivity
-            val intent = Intent(applicationContext, WorkoutActivity::class.java)
 
             intent.putExtra(USER_ID, uid)
             intent.putExtra(WORKOUT_TYPE, BULK_UP)
@@ -53,13 +55,19 @@ class Welcome : AppCompatActivity() {
 
         mEnduranceButton.setOnClickListener{
             Log.i(TAG, "Endurance Selected")
+
+            intent.putExtra(USER_ID, uid)
+            intent.putExtra(WORKOUT_TYPE, ENDURANCE)
+            startActivity(intent)
         }
 
         mFlexibilityButton.setOnClickListener{
             Log.i(TAG, "Flexibility Selected")
+
+            intent.putExtra(USER_ID, uid)
+            intent.putExtra(WORKOUT_TYPE, FLEXIBILITY)
+            startActivity(intent)
         }
-
-
     }
 
     companion object {
@@ -67,6 +75,8 @@ class Welcome : AppCompatActivity() {
         val USER_ID = "USER_ID"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
         val BULK_UP = "BULK_UP"
+        val WEIGHT_LOSS = "WEIGHT_LOSS"
+        val ENDURANCE = "ENDURANCE"
+        val FLEXIBILITY = "FLEXIBILITY"
     }
-
 }
