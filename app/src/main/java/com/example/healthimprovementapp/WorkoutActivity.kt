@@ -7,12 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.ExerciseList
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutListAdaptor
 import com.google.firebase.database.*
-import java.lang.Exception
 import java.util.*
 
 class WorkoutActivity : AppCompatActivity() {
@@ -85,16 +82,18 @@ class WorkoutActivity : AppCompatActivity() {
             val intent = Intent(this, AddWorkoutActivity::class.java)
             intent.putExtra(WORKOUT_ID, id)
             intent.putExtra(WORKOUT_NAME, name)
-            startActivity(intent)
+            startActivityForResult(intent, REQUEST_CODE)
 
             val exerciseListIntent = Intent(this, ActivityCreateExerciseList::class.java)
             exerciseListIntent.putExtra(WORKOUT_ID, id)
             exerciseListIntent.putExtra(WORKOUT_NAME, name)
             startActivity(exerciseListIntent)
 
-            val workout = Workout(id!!, name, emptyList())
+            //val workout = Workout(id!!, name, emptyList())
 
-            databaseWorkouts.child(uid!!).child(id).setValue(workout)
+            if (id != null) {
+                databaseWorkouts.child(uid!!).child(id).setValue(workout)
+            }
 
             editTextName.setText("")
 
@@ -117,7 +116,7 @@ class WorkoutActivity : AppCompatActivity() {
     override  fun onStart() {
         super.onStart()
 
-        databaseWorkouts.addValueEventListener(object: ValueEventListener {
+        databaseWorkouts.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 workouts.clear()
 
@@ -155,6 +154,7 @@ class WorkoutActivity : AppCompatActivity() {
         const val WORKOUT_NAME = "WORKOUT_NAME"
         const val WORKOUT_ID = "WORKOUT_ID"
         const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
+        const val REQUEST_CODE = 2
         val USER_ID = "USER_ID"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
         val BULK_UP = "BULK_UP"

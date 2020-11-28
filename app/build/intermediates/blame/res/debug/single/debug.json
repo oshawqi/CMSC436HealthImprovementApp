@@ -1,19 +1,19 @@
 [
     {
-        "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_workout_list.xml.flat",
-        "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\activity_workout_list.xml"
+        "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_workout_list.xml.flat",
+        "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\workout_list.xml"
     },
     {
         "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
         "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
-        "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_welcome.xml.flat",
-        "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\welcome.xml"
-    },
-    {
         "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_welcome.xml.flat",
+        "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\welcome.xml"
     },
     {
         "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
@@ -40,12 +40,12 @@
         "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\activity_workout_exercise.xml"
     },
     {
-        "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
         "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
@@ -90,6 +90,10 @@
     {
         "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item.xml.flat",
         "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\list_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_add_workout.xml.flat",
+        "source": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\add_workout.xml"
     },
     {
         "merged": "C:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
