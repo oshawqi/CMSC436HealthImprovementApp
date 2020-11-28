@@ -1,16 +1,13 @@
 package com.example.healthimprovementapp
 
 import android.app.Activity
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.list_item.view.*
-import kotlin.random.Random
 
 class AddWorkoutActivity : Activity() {
     private var workoutName : String? = null
@@ -71,13 +68,18 @@ class AddWorkoutActivity : Activity() {
                 //TODO -> add an alert dialog to ask if they want to submit a workout with no exercises
             } else {
                 //TODO -> package the exercises as an intent and set it as the result for the activity
+                val returnIntent = Intent(this, WorkoutActivity::class.java)
+                returnIntent.putExtra(WORKOUT_NAME, workout)
+                setResult(REQUEST_CODE, returnIntent)
+                finish()
             }
         }
     }
 
     private fun addExercise(exerciseName : String, numSets: Int, numReps: Int, numWeight: Int) {
         val newExercise = Exercise(exerciseName, numSets, numReps, numWeight)
-        mExerciseListAdapter.add(newExercise)
+        workout.exerciseList.add(newExercise) //Adds the new exercise to this workout's exercise list
+        mExerciseListAdapter.add(newExercise) //Adds this new exercise to the visible exercise list on the UI
     }
 
     companion object {
@@ -91,5 +93,6 @@ class AddWorkoutActivity : Activity() {
         val WEIGHT_LOSS = "WEIGHT_LOSS"
         val ENDURANCE = "ENDURANCE"
         val FLEXIBILITY = "FLEXIBILITY"
+        const val REQUEST_CODE = 2
     }
 }

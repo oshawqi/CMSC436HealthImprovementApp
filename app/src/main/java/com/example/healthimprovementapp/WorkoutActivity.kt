@@ -1,5 +1,6 @@
 package com.example.healthimprovementapp
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -18,6 +19,7 @@ class WorkoutActivity : AppCompatActivity() {
     internal lateinit var listViewWorkouts: ListView
     internal lateinit var workouts: ArrayList<Workout>
     private lateinit var databaseWorkouts: DatabaseReference
+    private lateinit var workout: Workout
 
     private var uid: String? = null //TODO (nothing) but I changed this to a nullable variable, it can definitely be changed back if needed
     private var workoutType : String? = null
@@ -84,16 +86,13 @@ class WorkoutActivity : AppCompatActivity() {
             intent.putExtra(WORKOUT_NAME, name)
             startActivityForResult(intent, REQUEST_CODE)
 
+
             val exerciseListIntent = Intent(this, ActivityCreateExerciseList::class.java)
             exerciseListIntent.putExtra(WORKOUT_ID, id)
             exerciseListIntent.putExtra(WORKOUT_NAME, name)
             startActivity(exerciseListIntent)
 
-            //val workout = Workout(id!!, name, emptyList())
-
-            if (id != null) {
-                databaseWorkouts.child(uid!!).child(id).setValue(workout)
-            }
+            databaseWorkouts.child(uid!!).child(id!!).setValue(workout)
 
             editTextName.setText("")
 
@@ -104,6 +103,16 @@ class WorkoutActivity : AppCompatActivity() {
         }
         else {
             Toast.makeText(this, "Please enter a workout name", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                //Get workout from intent
+                workout = data?.getParcelableExtra<Workout>(WORKOUT_NAME)!!
+            }
         }
     }
 

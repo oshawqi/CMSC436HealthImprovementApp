@@ -1,13 +1,11 @@
 package com.example.healthimprovementapp.com.example.healthimprovementapp
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.ExerciseListAdaptor
 import com.example.healthimprovementapp.R
-import com.google.firebase.database.FirebaseDatabase
 
 class WorkoutExercisesActivity : AppCompatActivity() {
 
@@ -34,7 +32,7 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         mWorkout = Workout(workoutName!!, workoutId!!, ArrayList<Exercise>(0))//TODO change to proper arrayList
 
         //Setup List Adapter
-        mListAdapter = ExerciseListAdaptor(this, mWorkout.workoutName)
+        mListAdapter = ExerciseListAdaptor(this, mWorkout.workoutName.toString())
         mListView.adapter = mListAdapter
 
     }
