@@ -9,6 +9,7 @@ import android.widget.*
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.list_item.view.*
 import kotlin.random.Random
 
 class AddWorkoutActivity : Activity() {
@@ -53,9 +54,13 @@ class AddWorkoutActivity : Activity() {
         //onclick listener for adding exercises to the list
         mAddExerciseButton.setOnClickListener {
             val exerciseName = mExerciseNameEditText.text.toString()
+            val numSets = findViewById<View>(R.id.numSets).text.toString().toInt()
+            val numReps = findViewById<View>(R.id.numReps).text.toString().toInt()
+            val numWeight = findViewById<View>(R.id.numWeight).text.toString().toInt()
 
             if (exerciseName != null && exerciseName != "") {
-                addExercise(exerciseName)
+
+                addExercise(exerciseName, numSets, numReps, numWeight)
             } else {
                 Toast.makeText(this, "Please enter an exercise name", Toast.LENGTH_LONG)
             }
@@ -70,14 +75,21 @@ class AddWorkoutActivity : Activity() {
         }
     }
 
-    private fun addExercise(exerciseName : String) {
-        val newExercise = Exercise("exercise", exerciseName)
+    private fun addExercise(exerciseName : String, numSets: Int, numReps: Int, numWeight: Int) {
+        val newExercise = Exercise(exerciseName, numSets, numReps, numWeight)
         mExerciseListAdapter.add(newExercise)
     }
 
     companion object {
         val TAG = "Mine-AddWorkoutActivity:"
-        const val WORKOUT_NAME = "com.example.tesla.myhomelibrary.authorname"
-        const val WORKOUT_ID = "com.example.tesla.myhomelibrary.authorid"
+        const val WORKOUT_NAME = "WORKOUT_NAME"
+        const val WORKOUT_ID = "WORKOUT_ID"
+        const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
+        val USER_ID = "USER_ID"
+        val WORKOUT_TYPE = "WORKOUT_TYPE"
+        val BULK_UP = "BULK_UP"
+        val WEIGHT_LOSS = "WEIGHT_LOSS"
+        val ENDURANCE = "ENDURANCE"
+        val FLEXIBILITY = "FLEXIBILITY"
     }
 }

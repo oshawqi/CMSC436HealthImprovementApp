@@ -23,4 +23,7 @@
     <string name="submit_workout">Submit Workout</string>
     <string name="add_exercise">Add an exercise</string>
     <string name="exercise_name">Exercise name: </string>
+    <string name="number_of_sets">Number of Sets:</string>
+    <string name="add_exercise_button">Add Exercise</string>
+    <string name="number_of_reps">Number of Reps</string>
 </resources>

@@ -19,9 +19,7 @@ class WorkoutActivity : AppCompatActivity() {
     private lateinit var editTextName: EditText
     private lateinit var buttonAddWorkout: Button
     internal lateinit var listViewWorkouts: ListView
-
-    internal lateinit var workouts: MutableList<Workout>
-    private lateinit var mWorkoutListAdaptor: WorkoutListAdaptor
+    internal lateinit var workouts: ArrayList<Workout>
     private lateinit var databaseWorkouts: DatabaseReference
 
     private var uid: String? = null //TODO (nothing) but I changed this to a nullable variable, it can definitely be changed back if needed
@@ -74,7 +72,7 @@ class WorkoutActivity : AppCompatActivity() {
 
     }
 
-    //TODO: Finish implementing this
+    //TODO: Finish implementing this - ensure a duplicate name is not entered. This func. should call a new activity.
     private fun addWorkout() {
         Toast.makeText(this, "Adding a custom workout...", Toast.LENGTH_LONG).show()
         val name = editTextName.text.toString()
@@ -88,6 +86,11 @@ class WorkoutActivity : AppCompatActivity() {
             intent.putExtra(WORKOUT_ID, id)
             intent.putExtra(WORKOUT_NAME, name)
             startActivity(intent)
+
+            val exerciseListIntent = Intent(this, ActivityCreateExerciseList::class.java)
+            exerciseListIntent.putExtra(WORKOUT_ID, id)
+            exerciseListIntent.putExtra(WORKOUT_NAME, name)
+            startActivity(exerciseListIntent)
 
             val workout = Workout(id!!, name, emptyList())
 
@@ -148,10 +151,10 @@ class WorkoutActivity : AppCompatActivity() {
 
     //TODO: These need to be changed to fit this project
     companion object {
-        const val TAG = "Mine-WorkoutActivity: "
-        const val WORKOUT_NAME = "com.example.tesla.myhomelibrary.authorname"
-        const val WORKOUT_ID = "com.example.tesla.myhomelibrary.authorid"
-        const val WORKOUT_EXERCISES = "com.example.tesla.myhomelibrary.userid"
+        const val TAG = "HealthImprovementApp Tag"
+        const val WORKOUT_NAME = "WORKOUT_NAME"
+        const val WORKOUT_ID = "WORKOUT_ID"
+        const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
         val USER_ID = "USER_ID"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
         val BULK_UP = "BULK_UP"
