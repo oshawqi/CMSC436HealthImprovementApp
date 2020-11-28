@@ -123,14 +123,14 @@ class WorkoutActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 workouts.clear()
 
-                var workout: Workout? = null
+                var workoutFromDatabase: Workout? = null
                 for (postSnapshot in dataSnapshot.child(uid!!).children) {
                     try {
-                        workout = postSnapshot.getValue(Workout::class.java)
+                        workoutFromDatabase = postSnapshot.getValue(Workout::class.java)
                     } catch (e: Exception) {
                         Log.e(TAG, e.toString())
                     } finally {
-                        workouts.add(workout!!)
+                        workouts.add(workoutFromDatabase!!)
                     }
                 }
 
