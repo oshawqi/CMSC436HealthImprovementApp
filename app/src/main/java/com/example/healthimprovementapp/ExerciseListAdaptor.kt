@@ -4,36 +4,71 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
-import android.widget.TextView
+import android.widget.*
+import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 
-class ExerciseListAdaptor(context : Context, resource : Int, workout : Workout) : ArrayAdapter<String>(context, resource) {
+class ExerciseListAdaptor(private val context : Context, private val workoutName : String) : BaseAdapter() {
 
-    private val workout : Workout = workout
-    private var mLayoutInflater : LayoutInflater = LayoutInflater.from(context)
-    private lateinit var mExerciseTitleView : TextView
-    private lateinit var mSetsView : TextView
-    private lateinit var mWeightView : TextView
-    private lateinit var mRepsView : TextView
+    private val exercises : ArrayList<Exercise> = ArrayList<Exercise>()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-        val listView : View
-        if (convertView == null) {
-            listView = mLayoutInflater.inflate(R.layout.exercise_list, null, true)
-            mExerciseTitleView = listView.findViewById(R.id.workoutName)
-            mSetsView = listView.findViewById(R.id.sets)
-            mWeightView = listView.findViewById(R.id.weight)
-            mRepsView = listView.findViewById(R.id.reps)
+        val exercise = exercises[position]
+        val viewHolder : ViewHolder
 
-            mExerciseTitleView.text = workout.workoutExercises[position].exerciseName
+        if (convertView == null) {
+
+            viewHolder = ViewHolder()
+            val mLayoutInflater = LayoutInflater.from(context)
+            val newView = mLayoutInflater.inflate(R.layout.exercise_list, parent, false)
+
+            newView.tag = viewHolder
+            viewHolder.mItemLayout = newView.findViewById(R.id.exerciseList)
+            viewHolder.mTitleView = newView.findViewById(R.id.exerciseName)
+            viewHolder.mSetsEditText = newView.findViewById(R.id.setsEditText)
+            viewHolder.mRepsEditText = newView.findViewById(R.id.repsEditText)
+            viewHolder.mWeightEditText = newView.findViewById(R.id.weightEditText)
+
         } else {
-            listView = convertView
+            viewHolder = convertView.tag as ViewHolder
         }
 
+        //TODO -> fill in default data in the EditTexts as hints for reps, weight, sets.
+        viewHolder.mTitleView!!.text = exercise.exerciseName
 
-        return listView
+        return viewHolder.mItemLayout!!
+    }
+
+    override fun getItem(position: Int): Any {
+        return exercises[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        //TODO -> look into saving the id for the database here and be able to retrieve it
+        //from here
+        return position.toLong()
+    }
+
+    override fun getCount(): Int {
+        return exercises.size
+    }
+
+    fun add(exercise : Exercise) : Int {
+        exercises.add(exercise)
+        notifyDataSetChanged()
+        return count - 1
+    }
+
+    fun removeAt(position: Int) {
+        exercises.removeAt(position)
+    }
+
+    internal class ViewHolder {
+        var mItemLayout : RelativeLayout? = null
+        var mTitleView : TextView? = null
+        var mSetsEditText : EditText? = null
+        var mRepsEditText : EditText? = null
+        var mWeightEditText : EditText? = null
     }
 }

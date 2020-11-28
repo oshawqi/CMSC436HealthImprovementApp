@@ -912,6 +912,16 @@ id activity_chooser_view_content
 id activity_main
 id add
 id addCustomWorkoutButton
+id addWorkoutAddExerciseButton
+id addWorkoutAddExerciseString
+id addWorkoutExerciseList
+id addWorkoutExerciseName
+id addWorkoutExerciseNameString
+id addWorkoutName
+id addWorkoutNumRepsString
+id addWorkoutNumSetsString
+id addWorkoutSubmitButton
+id addWorkoutWeight
 id adjust_height
 id adjust_width
 id alertTitle
@@ -1025,6 +1035,9 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id numReps
+id numSets
+id numWeight
 id off
 id on
 id packed
@@ -1180,6 +1193,7 @@ layout activity_registration
 layout activity_workout
 layout activity_workout_exercise
 layout activity_workout_list
+layout add_workout
 layout custom_dialog
 layout exercise_list
 layout list_item
@@ -1226,6 +1240,8 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string account_login
 string add
+string add_exercise
+string add_exercise_button
 string app_name
 string bulk_up
 string common_google_play_services_enable_button
@@ -1250,6 +1266,7 @@ string default_web_client_id
 string email
 string endurance
 string enter_a_workout_name
+string exercise_name
 string firebase_database_url
 string fitness_goal
 string flexibility
@@ -1259,6 +1276,8 @@ string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
 string login
+string number_of_reps
+string number_of_sets
 string password
 string project_id
 string register
