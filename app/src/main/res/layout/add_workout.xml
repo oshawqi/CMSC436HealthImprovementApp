@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutName"
+        android:textSize="50dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutAddExerciseString"
+        android:text="@string/add_exercise"
+        android:textSize="20dp"
+        android:layout_below="@+id/addWorkoutName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutExerciseNameString"
+        android:text="@string/exercise_name"
+        android:textSize="15dp"
+        android:gravity="left"
+        android:layout_below="@+id/addWorkoutAddExerciseString"
+        android:layout_alignBottom="@+id/addWorkoutExerciseName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutExerciseName"
+        android:layout_below="@+id/addWorkoutAddExerciseString"
+        android:layout_toRightOf="@+id/addWorkoutExerciseNameString"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutAddExerciseButton"
+        android:text="@string/add"
+        android:layout_below="@+id/addWorkoutExerciseName"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutSubmitButton"
+        android:text="@string/submit_workout"
+        android:layout_below="@+id/addWorkoutExerciseName"
+        android:layout_toRightOf="@+id/addWorkoutAddExerciseButton"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutExerciseList"
+        android:layout_below="@+id/addWorkoutAddExerciseButton"/>
+
+
+
+</RelativeLayout>

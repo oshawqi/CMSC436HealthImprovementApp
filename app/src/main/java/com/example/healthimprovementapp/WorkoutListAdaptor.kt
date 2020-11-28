@@ -48,6 +48,7 @@ class WorkoutListAdaptor(context: Activity, workouts: List<Workout>) : ArrayAdap
         val pos = numListElements()
         listView.addView(this.getView(pos, null, listView))
     }
+
     //Takes a list of exercises and returns them in a string list with the format:
     //  exercise1, exercise2, ..., exerciseN
     private fun getExercisesString(exercises : List<Exercise>) : String {

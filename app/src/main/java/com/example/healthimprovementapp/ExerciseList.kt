@@ -16,8 +16,8 @@ class ExerciseList(private val context: Activity, private var exercises: List<Ex
         val listViewItem = inflator.inflate(R.layout.workout_list, null, true)
 
         //TODO: Update the XML file to account for multiple exercises
-        val textViewName = listViewItem.findViewById<View>(R.id.textViewName) as TextView
-        val textViewExercise = listViewItem.findViewById<View>(R.id.textViewExercise) as TextView
+        val textViewName = listViewItem.findViewById<View>(R.id.exerciseName) as TextView
+        //val textViewExercise = listViewItem.findViewById<View>(R.id.textViewExercise) as TextView
 
         val exercise = exercises[position]
         textViewName.text = exercise.exerciseName
