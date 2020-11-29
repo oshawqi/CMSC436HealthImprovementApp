@@ -12,17 +12,24 @@ public class Workout(val workoutId: String? = "", val workoutName: String? = "",
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
-        TODO("workoutExercises")
-    ) {
-    }
+        ArrayList<Exercise>().apply{
+            parcel.readList(this as List<Exercise>,Exercise::class.java.classLoader)
+        }
+    ){}
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(workoutId)
         parcel.writeString(workoutName)
+        parcel.writeList(workoutExercises as List<Exercise>)
     }
 
     override fun describeContents(): Int {
         return 0
+    }
+
+    override fun toString(): String {
+        val numExercises = exerciseList.size.toString()
+        return "Name: $workoutName, ID: $workoutId, with $numExercises exercises"
     }
 
     companion object CREATOR : Parcelable.Creator<Workout> {
@@ -34,5 +41,4 @@ public class Workout(val workoutId: String? = "", val workoutName: String? = "",
             return arrayOfNulls(size)
         }
     }
-
 }

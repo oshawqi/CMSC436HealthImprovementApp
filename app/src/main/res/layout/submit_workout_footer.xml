@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/submitWorkoutFooter"
+    android:text="@string/submit_workout"
+    android:gravity="center"
+    android:background="@color/backgroundColor"
+    android:textColor="@color/textColor">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/submitButton"
-        android:text="@string/submit_workout"/>
-
-</RelativeLayout>
+</TextView>

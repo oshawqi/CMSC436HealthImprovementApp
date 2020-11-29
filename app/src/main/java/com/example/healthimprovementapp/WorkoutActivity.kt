@@ -1,5 +1,6 @@
 package com.example.healthimprovementapp
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -10,16 +11,18 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity
+import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutList
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.workout_list.*
 import java.util.*
 
 class WorkoutActivity : AppCompatActivity() {
+
     private lateinit var editTextName: EditText
     private lateinit var buttonAddWorkout: Button
-    internal lateinit var listViewWorkouts: ListView
-    internal lateinit var workouts: ArrayList<Workout>
+    private lateinit var listViewWorkouts: ListView
+    private lateinit var workoutListAdapter : WorkoutListAdapter
     private lateinit var databaseWorkouts: DatabaseReference
-    private lateinit var workout: Workout
 
     private lateinit var uid: String
     private lateinit var workoutType : String
@@ -38,18 +41,22 @@ class WorkoutActivity : AppCompatActivity() {
 
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText
         buttonAddWorkout = findViewById<View>(R.id.addCustomWorkoutButton) as Button
-        listViewWorkouts = findViewById<View>(R.id.listViewWorkouts) as ListView
 
-        workouts = ArrayList()
+        //setup list view and adapter
+        listViewWorkouts = findViewById<View>(R.id.listViewWorkouts) as ListView
+        workoutListAdapter = WorkoutListAdapter(this)
+        listViewWorkouts.adapter = workoutListAdapter
 
         buttonAddWorkout.setOnClickListener {
             addWorkout()
         }
 
         listViewWorkouts.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
+            //TODO -> (if we have time) add functionality to first show all of the exercises in the workout,
+            //and if the user clicks the same workout again in the list then launch the activity.
 
             //get the selected workout
-            val workout = workouts[i]
+            val workout = workoutListAdapter.getItem(i)
 
             //create an intent and package it up
             val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)//TODO: NEED TO FINISH THIS ACTIVITY. IT SHOULD LIST THE WORKOUT_NAME, EXERCISES, REPS, WEIGHTS, SETS,
@@ -58,12 +65,15 @@ class WorkoutActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        listViewWorkouts.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
-            val workout = workouts[i]
-            //TODO: Make a dialog box pop up asking "Are you sure you want to delete this workout?" before actually deleting it
-            deleteWorkout(workout)
-            true
-        }
+        //TODO -> figure out how to set two types of listeners or create an options menu to start an edit list mode
+        //to handle deleting the workouts
+
+//        listViewWorkouts.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
+//            val workout = workouts[i]
+//            //TODO: Make a dialog box pop up asking "Are you sure you want to delete this workout?" before actually deleting it
+//            deleteWorkout(workout)
+//            true
+//        }
     }
 
     private fun addWorkout() {
@@ -73,34 +83,33 @@ class WorkoutActivity : AppCompatActivity() {
         if (!TextUtils.isEmpty(name)) {
             val id = databaseWorkouts.push().key
 
-            val intent = Intent(this, AddWorkoutActivity::class.java)
-            intent.putExtra(WORKOUT_ID, id)
-            intent.putExtra(WORKOUT_NAME, name)
-            startActivityForResult(intent, REQUEST_CODE)
-
             val exerciseListIntent = Intent(this, AddWorkoutActivity::class.java)
             exerciseListIntent.putExtra(WORKOUT_ID, id)
             exerciseListIntent.putExtra(WORKOUT_NAME, name)
-            startActivityForResult(exerciseListIntent, REQUEST_CODE)
+            startActivityForResult(exerciseListIntent, ADD_WORKOUT_REQUEST)
 
-            databaseWorkouts.child(uid!!).child(id!!).setValue(workout)
-
-            editTextName.setText("")
-
-            Toast.makeText(this, "Workout added", Toast.LENGTH_LONG).show()
-
+            //The workout is actually added in the onActivityResult function
         }
         else {
             Toast.makeText(this, "Please enter a workout name", Toast.LENGTH_LONG).show()
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
+
+        if (requestCode == ADD_WORKOUT_REQUEST) {
+            if (resultCode == RESULT_OK && data != null) {
                 //Get workout from intent
-                workout = data?.getParcelableExtra<Workout>(WORKOUT_NAME)!!
+                val workout = data?.getParcelableExtra<Workout>(WORKOUT_NAME)!!
+                workoutListAdapter.add(workout)
+
+                val workoutString = workoutListAdapter.count.toString()
+                Log.i(TAG, "Workout received and added in onActivityResult: $workoutString")
+            } else {
+                Log.i(TAG, "Workout not received, request code not RESULT_OK or data is null")
+                Toast.makeText(this,
+                    "Were sorry something went wrong. Please try to add your workout again!", Toast.LENGTH_LONG)
             }
         }
     }
@@ -116,8 +125,8 @@ class WorkoutActivity : AppCompatActivity() {
 
         databaseWorkouts.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                workouts.clear()
 
+                //TODO -> had to delete the workouts.clear() (changed to workoutListAdapter.clear()) so the workouts would show up in the list
                 var workoutFromDatabase: Workout? = null
                 for (postSnapshot in dataSnapshot.child(uid!!).children) {
                     try {
@@ -125,7 +134,7 @@ class WorkoutActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         Log.e(TAG, e.toString())
                     } finally {
-                        workouts.add(workoutFromDatabase!!)
+                        workoutListAdapter.add(workoutFromDatabase!!)
                     }
                 }
 
@@ -141,11 +150,11 @@ class WorkoutActivity : AppCompatActivity() {
 
 
     companion object {
-        const val TAG = "HealthImprovementApp Tag"
+        const val TAG = "Mine-WorkoutActivity"
         const val WORKOUT_NAME = "WORKOUT_NAME"
         const val WORKOUT_ID = "WORKOUT_ID"
         const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
-        const val REQUEST_CODE = 2
+        const val ADD_WORKOUT_REQUEST = 0
         val USER_ID = "USER_ID"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
         val BULK_UP = "BULK_UP"

@@ -14,6 +14,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
+
+    private var isTesting = true;
+
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var userEmail: EditText? = null
@@ -43,9 +46,18 @@ class LoginActivity : AppCompatActivity() {
     // If the email and password are not empty, try to log in
     // If the login is successful, store info into intent and launch DashboardActivity
     private fun loginUserAccount() {
+        val email : String
+        val  password : String
+        if (isTesting) {
+            email = "test@gmail.com"
+            password = "test1234"
+        } else {
+            email = userEmail?.text.toString()
+            password = userPassword?.text.toString()
+        }
         progressBar!!.visibility = View.VISIBLE
-        val email: String = userEmail?.text.toString()
-        val password: String = userPassword?.text.toString()
+        //val email: String = userEmail?.text.toString()
+        //val password: String = userPassword?.text.toString()
 
         //Check if they are empty
         if (TextUtils.isEmpty(email)) {

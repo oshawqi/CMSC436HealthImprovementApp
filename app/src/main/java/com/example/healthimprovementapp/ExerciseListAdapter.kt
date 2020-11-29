@@ -1,6 +1,7 @@
 package com.example.healthimprovementapp
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import android.widget.*
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 
-class ExerciseListAdaptor(private val context : Context, private val workoutName : String) : BaseAdapter() {
+class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
 
     private val exercises : ArrayList<Exercise> = ArrayList<Exercise>()
 
@@ -34,8 +35,11 @@ class ExerciseListAdaptor(private val context : Context, private val workoutName
             viewHolder = convertView.tag as ViewHolder
         }
 
-        //TODO -> fill in default data in the EditTexts as hints for reps, weight, sets.
-        viewHolder.mTitleView!!.text = exercise.exerciseName
+        //fill in default data in the EditTexts as hints for reps, weight, sets.
+        viewHolder.mTitleView!!.text = exercise.exerciseName.toString()
+        viewHolder.mWeightEditText!!.setText(exercise.weight.toString())
+        viewHolder.mSetsEditText!!.setText(exercise.numSets.toString())
+        viewHolder.mRepsEditText!!.setText(exercise.numReps.toString())
 
         return viewHolder.mItemLayout!!
     }
@@ -54,10 +58,15 @@ class ExerciseListAdaptor(private val context : Context, private val workoutName
         return exercises.size
     }
 
-    fun add(exercise : Exercise) : Int {
+    fun add(exercise : Exercise) {
+        Log.i(TAG, "Adding exercise to adapter")
         exercises.add(exercise)
         notifyDataSetChanged()
-        return count - 1
+    }
+
+    fun addAll(inExercises : List<Exercise>) {
+        exercises.addAll(inExercises)
+        notifyDataSetChanged()
     }
 
     fun removeAt(position: Int) {
@@ -70,5 +79,9 @@ class ExerciseListAdaptor(private val context : Context, private val workoutName
         var mSetsEditText : EditText? = null
         var mRepsEditText : EditText? = null
         var mWeightEditText : EditText? = null
+    }
+
+    companion object {
+        val TAG = "Mine-ExerciseListAdapter:"
     }
 }

@@ -20,6 +20,7 @@
         <activity android:name=".WorkoutActivity" />
         <activity android:name=".com.example.healthimprovementapp.WorkoutExercisesActivity" />
         <activity android:name=".Welcome" />
+        <activity android:name=".AddWorkoutActivity"/>
 
     </application>
 

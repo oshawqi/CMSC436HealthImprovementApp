@@ -1,23 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/exerciseList">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/exerciseNameString"
+        android:text="@string/exercise_name"
+        android:textSize="20dp"
+        android:gravity="left"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/exerciseName"
-        android:gravity="left"/>
+        android:gravity="left"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/exerciseNameString"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weight"
+        android:text="@string/weight"
+        android:gravity="center"
+        android:layout_below="@+id/exerciseName"
+        android:layout_alignBottom="@+id/weightEditText"/>
+
+    <EditText
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/weightEditText"
+        android:layout_toRightOf="@+id/weight"
+        android:layout_below="@+id/exerciseName"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sets"
         android:text="@string/sets"
+        android:gravity="center"
         android:layout_below="@+id/exerciseName"
+        android:layout_toRightOf="@+id/weightEditText"
         android:layout_alignBottom="@+id/setsEditText"/>
 
     <EditText
-        android:layout_width="100dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:id="@+id/setsEditText"
         android:gravity="center"
@@ -27,31 +55,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/weight"
-        android:text="@string/weight"
-        android:layout_below="@+id/sets"
-        android:layout_alignBottom="@+id/weightEditText"/>
-
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/weightEditText"
-        android:layout_toRightOf="@+id/weight"
-        android:layout_below="@+id/setsEditText"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/reps"
         android:text="@string/reps"
-        android:layout_below="@+id/weight"
+        android:gravity="center"
+        android:layout_below="@+id/exerciseName"
+        android:layout_toRightOf="@+id/setsEditText"
         android:layout_alignBottom="@+id/repsEditText"/>
 
     <EditText
-        android:layout_width="100dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:id="@+id/repsEditText"
         android:layout_toRightOf="@+id/reps"
-        android:layout_below="@+id/weightEditText"/>
+        android:layout_below="@+id/exerciseName"/>
 
 </RelativeLayout>

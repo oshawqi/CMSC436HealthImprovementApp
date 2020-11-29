@@ -3,6 +3,7 @@ package com.example.healthimprovementapp
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
@@ -20,7 +21,7 @@ class AddWorkoutActivity : Activity() {
     private lateinit var mSubmitWorkoutButton : Button
     private lateinit var mExerciseListView : ListView
 
-    private lateinit var mExerciseListAdapter : ExerciseListAdaptor
+    private lateinit var mExerciseListAdapter : ExerciseListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,19 +45,18 @@ class AddWorkoutActivity : Activity() {
 
         //set up the list view and adapter
         mExerciseListView = findViewById(R.id.addWorkoutExerciseList)
-        mExerciseListAdapter = ExerciseListAdaptor(this, workoutName!!)
+        mExerciseListAdapter = ExerciseListAdapter(this)
         mExerciseListView.adapter = mExerciseListAdapter
 
         //TODO -> add a button or listener to remove exercises from the list
         //onclick listener for adding exercises to the list
         mAddExerciseButton.setOnClickListener {
             val exerciseName = mExerciseNameEditText.text.toString()
-            val numSets = findViewById<View>(R.id.numSets).text.toString().toInt()
-            val numReps = findViewById<View>(R.id.numReps).text.toString().toInt()
-            val numWeight = findViewById<View>(R.id.numWeight).text.toString().toInt()
+            val numSets = findViewById<EditText>(R.id.numSets).text.toString().toInt()
+            val numReps = findViewById<EditText>(R.id.numReps).text.toString().toInt()
+            val numWeight = findViewById<EditText>(R.id.numWeight).text.toString().toInt()
 
             if (exerciseName != null && exerciseName != "") {
-
                 addExercise(exerciseName, numSets, numReps, numWeight)
             } else {
                 Toast.makeText(this, "Please enter an exercise name", Toast.LENGTH_LONG)
@@ -67,9 +67,12 @@ class AddWorkoutActivity : Activity() {
             if (mExerciseListAdapter.count == 0) {
                 //TODO -> add an alert dialog to ask if they want to submit a workout with no exercises
             } else {
-                val returnIntent = Intent(this, WorkoutActivity::class.java)
-                returnIntent.putExtra(WORKOUT_NAME, workout)
-                setResult(REQUEST_CODE, returnIntent)
+                val workoutString = workout.toString()
+                Log.i(TAG, "Submitting Workout: $workoutString")
+
+                Toast.makeText(this,"Submitting",Toast.LENGTH_SHORT)
+                val returnIntent = Intent().putExtra(WORKOUT_NAME, workout)
+                setResult(RESULT_OK, returnIntent)
                 finish()
             }
         }
@@ -79,6 +82,8 @@ class AddWorkoutActivity : Activity() {
         val newExercise = Exercise(exerciseName, numSets, numReps, numWeight)
         workout.exerciseList.add(newExercise) //Adds the new exercise to this workout's exercise list
         mExerciseListAdapter.add(newExercise) //Adds this new exercise to the visible exercise list on the UI
+
+        Log.i(TAG, "Exercise added (Name: $exerciseName, Sets: $numSets, Reps: $numReps, Weight: $numWeight")
     }
 
     companion object {
