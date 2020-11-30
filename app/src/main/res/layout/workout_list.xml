@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/workoutList">
+    android:id="@+id/workoutList" android:background="@color/black">
 
     <TextView
+        android:text="TESTING TEXT 1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/workoutName"
         android:textSize="20dp"
-        android:gravity="left"/>
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:layout_margin="2dp"
+        android:padding="2dp"
+        android:background="@color/white"
+        android:fadingEdge="horizontal"/>
 
     <TextView
+        android:text="TESTING TEXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/workoutExercises"
         android:layout_below="@+id/workoutName"
-        android:gravity="left"/>
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"
+        android:padding="2dp"
+        android:ellipsize="end"
+        android:background="@color/white"
+        android:fadingEdge="horizontal"/>
 
 </RelativeLayout>

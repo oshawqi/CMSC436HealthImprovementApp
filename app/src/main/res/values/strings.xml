@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">HealthImprovementApp</string>
+    <string name="app_name">Weight Room</string>
     <string name="welcome">Welcome!</string>
-    <string name="fitness_goal">What would you like to do today?</string>
+    <string name="chose_a_workout_option">Chose a workout type from below:</string>
+    <string name="health_improvement">Health Improvement: </string>
+    <string name="strength_training">Strength Training: </string>
     <string name="weight_loss">Weight Loss</string>
-    <string name="strength_training">Strength Training</string>
     <string name="bulk_up">Bulk Up</string>
     <string name="endurance">Endurance</string>
     <string name="flexibility">Flexibility</string>
@@ -14,6 +15,7 @@
     <string name="register_new_account">Register new account</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
     <string name="account_login">Account Login</string>
     <string name="login">Login</string>

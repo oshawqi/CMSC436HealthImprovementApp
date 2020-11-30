@@ -5,7 +5,7 @@
     android:id="@+id/submitWorkoutFooter"
     android:text="@string/submit_workout"
     android:gravity="center"
-    android:background="@color/backgroundColor"
-    android:textColor="@color/textColor">
+    android:background="@color/black"
+    android:textColor="@color/white">
 
 </TextView>

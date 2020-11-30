@@ -1,6 +1,7 @@
 package com.example.healthimprovementapp
 
 import android.content.Intent
+import android.graphics.Color.red
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,11 +16,13 @@ class RegistrationActivity : AppCompatActivity() {
 
     private var emailTV: EditText? = null
     private var passwordTV: EditText? = null
+    private var confirmPasswordTV : EditText? = null
     private var regBtn: Button? = null
     private var progressBar: ProgressBar? = null
     private var validator = Validators()
 
     private var mAuth: FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -28,6 +31,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         emailTV = findViewById(R.id.email)
         passwordTV = findViewById(R.id.password)
+        confirmPasswordTV = findViewById(R.id.confirmPassword)
         regBtn = findViewById(R.id.register)
         progressBar = findViewById(R.id.progressBar)
 
@@ -35,33 +39,64 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun registerNewUser() {
-        progressBar!!.visibility = View.VISIBLE
 
         val email: String = emailTV!!.text.toString()
         val password: String = passwordTV!!.text.toString()
+        val confirmPassword : String = confirmPasswordTV!!.text.toString()
+        //Color value for invalid selections
+        val validColor = resources.getColor(R.color.valid)
+        val invalidColor = resources.getColor(R.color.invalid)
 
         if (!validator.validEmail(email)) {
-            Toast.makeText(applicationContext, "Please enter a valid email...", Toast.LENGTH_LONG).show()
+            emailTV!!.setTextColor(invalidColor)
+            Toast.makeText(applicationContext, "Please enter a valid email!", Toast.LENGTH_LONG).show()
             return
+        } else {
+            emailTV!!.setTextColor(validColor)
         }
+
         if (!validator.validPassword(password)) {
+            passwordTV!!.setTextColor(invalidColor)
+            confirmPasswordTV!!.setTextColor(invalidColor)
             Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
             return
+        } else {
+            passwordTV!!.setTextColor(validColor)
+            confirmPasswordTV!!.setTextColor(validColor)
         }
+
+        if (password != confirmPassword) {
+            passwordTV!!.setTextColor(invalidColor)
+            confirmPasswordTV!!.setTextColor(invalidColor)
+            Toast.makeText(applicationContext, "Passwords do not match!", Toast.LENGTH_LONG).show()
+            return
+        } else {
+            passwordTV!!.setTextColor(validColor)
+            confirmPasswordTV!!.setTextColor(validColor)
+        }
+
+        progressBar!!.visibility = View.VISIBLE
 
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Welcome!", Toast.LENGTH_LONG).show()
                     progressBar!!.visibility = View.GONE
 
                     val intent = Intent(this@RegistrationActivity, Welcome::class.java)
+                    intent.putExtra(USER_ID, mAuth!!.currentUser!!.uid)
                     startActivity(intent)
+
                 } else {
                     //Toast.makeText(applicationContext, "Registration failed! Please try again later", Toast.LENGTH_LONG).show()
                     progressBar!!.visibility = View.GONE
                 }
             }.addOnFailureListener { e ->
             Toast.makeText(applicationContext, e.localizedMessage, Toast.LENGTH_LONG).show()}
+    }
+
+    companion object {
+        val TAG = "Mine-RegistrationActivity"
+        const val USER_ID = "USER_ID"
     }
 }

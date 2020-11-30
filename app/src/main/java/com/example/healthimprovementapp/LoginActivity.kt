@@ -72,10 +72,9 @@ class LoginActivity : AppCompatActivity() {
         mAuth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             progressBar!!.visibility = View.GONE
             if (task.isSuccessful) {
-                Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Welcome Back!", Toast.LENGTH_LONG).show()
                 val intent = Intent(this@LoginActivity, Welcome::class.java)
-                intent.putExtra(USER_ID, mAuth!!.uid)
-
+                intent.putExtra(USER_ID, mAuth!!.currentUser!!.uid)
                 startActivity(intent)
             } else {
                 Toast.makeText(applicationContext, "Login failed! Please try again later", Toast.LENGTH_LONG).show()
