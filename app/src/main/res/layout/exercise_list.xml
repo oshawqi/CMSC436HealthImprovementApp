@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/exerciseList" android:background="@color/white"
-    android:layout_marginBottom="10dp">
+    android:id="@+id/exerciseList" android:background="@color/white">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,24 +12,23 @@
         android:gravity="left"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="2dp"
-        android:padding="2dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:padding="5dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/exerciseName"
-        android:gravity="left"
+        android:gravity="center"
         android:textSize="20dp"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginRight="2dp"
-        android:padding="2dp"
-        android:layout_toRightOf="@+id/exerciseNameString"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="5dp"
+        android:layout_toRightOf="@+id/exerciseNameString"
+        android:layout_alignBaseline="@+id/exerciseNameString"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,26 +38,22 @@
         android:gravity="center"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:padding="2dp"
-        android:layout_below="@+id/exerciseName"
-        android:layout_alignBottom="@+id/weightEditText"/>
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:layout_below="@+id/exerciseName" />
 
-    <EditText
+    <TextView
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:id="@+id/weightEditText"
+        android:id="@+id/weightView"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
+        android:gravity="center"
         android:padding="2dp"
         android:layout_toRightOf="@+id/weight"
-        android:layout_below="@+id/exerciseName"/>
+        android:layout_below="@+id/exerciseName"
+        android:layout_alignBottom="@+id/weight"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,29 +63,22 @@
         android:gravity="center"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:padding="2dp"
+        android:padding="5dp"
         android:layout_below="@+id/exerciseName"
-        android:layout_toRightOf="@+id/weightEditText"
-        android:layout_alignBottom="@+id/setsEditText"/>
+        android:layout_toRightOf="@+id/weightView"
+        android:layout_alignBottom="@+id/weightView"/>
 
-    <EditText
+    <TextView
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:id="@+id/setsEditText"
+        android:id="@+id/setsView"
         android:gravity="center"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:shadowColor="@color/white"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:padding="2dp"
+        android:padding="5dp"
         android:layout_below="@+id/exerciseName"
-        android:layout_toRightOf="@+id/sets"/>
+        android:layout_toRightOf="@+id/sets"
+        android:layout_alignBottom="@+id/sets"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -101,26 +88,22 @@
         android:gravity="center"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:padding="2dp"
+        android:padding="5dp"
         android:layout_below="@+id/exerciseName"
-        android:layout_toRightOf="@+id/setsEditText"
-        android:layout_alignBottom="@+id/repsEditText"/>
+        android:layout_toRightOf="@+id/setsView"
+        android:layout_alignBottom="@+id/setsView"/>
 
-    <EditText
+    <TextView
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:id="@+id/repsEditText"
+        android:id="@+id/repsView"
         android:background="@color/black"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:padding="2dp"
+        android:gravity="center"
+        android:padding="5dp"
         android:layout_toRightOf="@+id/reps"
-        android:layout_below="@+id/exerciseName"/>
+        android:layout_below="@+id/exerciseName"
+        android:layout_alignBottom="@+id/reps"
+        android:layout_alignEnd="@+id/exerciseName"/>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.healthimprovementapp.com.example.healthimprovementapp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.ExerciseListAdapter
 import com.example.healthimprovementapp.R
+import com.example.healthimprovementapp.Welcome
 
 class WorkoutExercisesActivity : AppCompatActivity() {
 
@@ -18,6 +20,7 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     private lateinit var mListAdapter : ExerciseListAdapter
     private lateinit var mSubmitButton : View
     private lateinit var mWorkout : Workout
+    private lateinit var uid : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +29,7 @@ class WorkoutExercisesActivity : AppCompatActivity() {
 
         //Get workout from the intent
         mWorkout = intent.getParcelableExtra<Workout>(WORKOUT_NAME)
+        uid = intent.getStringExtra(USER_ID)
         if (mWorkout == null) {
             Log.i(TAG, "Workout not received in the intent... finishing")
             finish()
@@ -51,11 +55,21 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         mListView.adapter = mListAdapter
         addAllExercises(mWorkout)
 
+        mSubmitButton.setOnClickListener {
+            submitWorkout()
+        }
+
     }
 
     //Adds all exercises into the list view
     private fun addAllExercises(workout : Workout) {
         mListAdapter.addAll(workout.exerciseList)
+    }
+
+    private fun submitWorkout() {
+        val intent = Intent(this, Welcome::class.java)
+        intent.putExtra(USER_ID, uid)
+        startActivity(intent)
     }
 
     companion object {

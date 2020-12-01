@@ -62,6 +62,7 @@ class WorkoutActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)//TODO: NEED TO FINISH THIS ACTIVITY. IT SHOULD LIST THE WORKOUT_NAME, EXERCISES, REPS, WEIGHTS, SETS,
             // AND THEN GIVE A WAY FOR THE USER TO FILL IN WHAT THEY ACCOMPLISHED AND THEN SAVE IT TO THE DATABASE. A HISTORY OF OLD WORKOUTS SHOULD BE ADDED TO WELCOME.KT FOR VIEWING.
             intent.putExtra(WORKOUT_NAME, workout)
+            intent.putExtra(USER_ID, uid)
             startActivity(intent)
         }
 

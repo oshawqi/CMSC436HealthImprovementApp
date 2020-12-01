@@ -36,30 +36,20 @@ class WorkoutListAdapter(private val context : Context) : BaseAdapter() {
 
         //fill in default data for workouts
         viewHolder.mTitleView!!.text = workout.workoutName
-        viewHolder.mExercisesView!!.text = truncatedExerciseString(workout)
+        viewHolder.mExercisesView!!.text = exerciseString(workout)
 
         return viewHolder.mItemLayout!!
     }
 
-    private fun truncatedExerciseString(workout : Workout) : String {
-        val exercises = workout.workoutExercises
-        val end = if (exercises.size < 3) exercises.size else 3
-        return exercises.subList(0, end).toString()
-    }
-
-    private fun fullExerciseString(workout : Workout) : String {
-        return workout.exerciseList.toString()
+    private fun exerciseString(workout : Workout) : String {
+        val roughString = workout.workoutExercises.toString() //returns [ s1, s2, s3, ..., sn]
+        return roughString.substring(1, roughString.length-1)
     }
 
     fun add(workout : Workout) {
         Log.i(TAG, "Adding Workout to adapter")
         workouts.add(workout)
         notifyDataSetChanged()
-    }
-
-    fun toggleExerciseString(position : Int) {
-        //TODO -> figure out how to change the value of each view's text view to show a full list of
-        //exercises in the workout
     }
 
     override fun getItem(position: Int): Workout {

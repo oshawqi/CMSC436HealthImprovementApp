@@ -27,9 +27,9 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
             newView.tag = viewHolder
             viewHolder.mItemLayout = newView.findViewById(R.id.exerciseList)
             viewHolder.mTitleView = newView.findViewById(R.id.exerciseName)
-            viewHolder.mSetsEditText = newView.findViewById(R.id.setsEditText)
-            viewHolder.mRepsEditText = newView.findViewById(R.id.repsEditText)
-            viewHolder.mWeightEditText = newView.findViewById(R.id.weightEditText)
+            viewHolder.mSetsView = newView.findViewById(R.id.setsView)
+            viewHolder.mRepsView = newView.findViewById(R.id.repsView)
+            viewHolder.mWeightView = newView.findViewById(R.id.weightView)
 
         } else {
             viewHolder = convertView.tag as ViewHolder
@@ -37,9 +37,9 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
 
         //fill in default data in the EditTexts as hints for reps, weight, sets.
         viewHolder.mTitleView!!.text = exercise.exerciseName.toString()
-        viewHolder.mWeightEditText!!.setText(exercise.weight.toString())
-        viewHolder.mSetsEditText!!.setText(exercise.numSets.toString())
-        viewHolder.mRepsEditText!!.setText(exercise.numReps.toString())
+        viewHolder.mWeightView!!.text = exercise.weight.toString()
+        viewHolder.mSetsView!!.text = exercise.numSets.toString()
+        viewHolder.mRepsView!!.text = exercise.numReps.toString()
 
         return viewHolder.mItemLayout!!
     }
@@ -76,9 +76,9 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
     internal class ViewHolder {
         var mItemLayout : RelativeLayout? = null
         var mTitleView : TextView? = null
-        var mSetsEditText : EditText? = null
-        var mRepsEditText : EditText? = null
-        var mWeightEditText : EditText? = null
+        var mSetsView : TextView? = null
+        var mRepsView : TextView? = null
+        var mWeightView : TextView? = null
     }
 
     companion object {

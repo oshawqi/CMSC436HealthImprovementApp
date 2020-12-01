@@ -31,7 +31,7 @@ class AddWorkoutActivity : Activity() {
         if (intent != null) {
             workoutName = intent.getStringExtra(WORKOUT_NAME)
             workoutID = intent.getStringExtra(WORKOUT_ID)
-            workout = Workout(workoutID!!, workoutName!!, ArrayList<Exercise>(0))
+            workout = Workout(workoutID!!, workoutName!!, ArrayList<Exercise>())
         } else {
             finish()
         }
