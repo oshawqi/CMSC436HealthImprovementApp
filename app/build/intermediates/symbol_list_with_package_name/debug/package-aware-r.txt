@@ -529,6 +529,7 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color black
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -561,6 +562,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color invalid
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -575,6 +577,7 @@ color material_grey_850
 color material_grey_900
 color notification_action_color_filter
 color notification_icon_bg_color
+color offWhite
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -595,9 +598,10 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
-color textColor
 color tooltip_background_dark
 color tooltip_background_light
+color valid
+color white
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -832,6 +836,7 @@ drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable logo
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -953,6 +958,7 @@ id checkbox
 id checked
 id chronometer
 id collapseActionView
+id confirmPassword
 id content
 id contentPanel
 id cos
@@ -988,6 +994,7 @@ id end
 id endurance_button
 id exerciseList
 id exerciseName
+id exerciseNameString
 id expand_activities_button
 id expanded_menu
 id fitness_goal_TextView
@@ -1000,6 +1007,8 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id healthImprovementString
+id history_button
 id home
 id homeAsUp
 id honorRequest
@@ -1025,6 +1034,7 @@ id listMode
 id listViewWorkouts
 id list_item
 id login
+id loginImage
 id message
 id middle
 id motion_base
@@ -1058,7 +1068,7 @@ id ratio
 id rectangles
 id register
 id reps
-id repsEditText
+id repsView
 id reverseSawtooth
 id right
 id right_icon
@@ -1081,11 +1091,12 @@ id search_voice_btn
 id selectExisting
 id select_dialog_listview
 id sets
-id setsEditText
+id setsView
 id shortcut
 id showCustom
 id showHome
 id showTitle
+id signout_button
 id sin
 id spacer
 id spline
@@ -1103,9 +1114,9 @@ id startVertical
 id staticLayout
 id staticPostLayout
 id stop
-id strength_training_TextView
+id strengthTrainingString
 id submenuarrow
-id submitButton
+id submitWorkoutFooter
 id submit_area
 id tabMode
 id tag_accessibility_actions
@@ -1138,11 +1149,12 @@ id up
 id useLogo
 id visible
 id weight
-id weightEditText
+id weightView
 id weight_loss_button
-id welcome_TextView
 id wide
 id withText
+id workoutExercises
+id workoutList
 id workoutName
 id wrap
 id wrap_content
@@ -1209,6 +1221,7 @@ layout select_dialog_singlechoice_material
 layout submit_workout_footer
 layout support_simple_spinner_dropdown_item
 layout welcome
+layout workout_list
 mipmap ic_launcher
 mipmap ic_launcher_round
 string abc_action_bar_home_description
@@ -1244,6 +1257,7 @@ string add_exercise
 string add_exercise_button
 string app_name
 string bulk_up
+string chose_a_workout_option
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -1262,19 +1276,20 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string confirm_password
 string default_web_client_id
 string email
 string endurance
 string enter_a_workout_name
 string exercise_name
 string firebase_database_url
-string fitness_goal
 string flexibility
 string gcm_defaultSenderId
 string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string health_improvement
 string login
 string number_of_reps
 string number_of_sets
@@ -1286,9 +1301,11 @@ string reps
 string search_menu_title
 string select_an_existing_workout
 string sets
+string signout
 string status_bar_notification_info_overflow
 string strength_training
 string submit_workout
+string view_user_history
 string weight
 string weight_loss
 string welcome

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
+ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
+INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
+INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
+INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
 MERGED from [androidx.core:core-ktx:1.3.2] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\fda3f1f1c9055ba59f8cda69efc6d86b\jetified-core-ktx-1.3.2\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-analytics-ktx:18.0.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\afdc209bca9861e364ee79754a8b9a67\jetified-firebase-analytics-ktx-18.0.0\AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-common-ktx:19.4.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\4fbc7cf3c298da90240f00331d338558\jetified-firebase-common-ktx-19.4.0\AndroidManifest.xml:2:1-21:12
@@ -55,25 +55,25 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Program Files\
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\a3a3abda64ecbb27ef007b9af21636ca\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\eb08b098a695b04d8fb898fcec2e3643\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\e7505ef78354cc305887c02ea7184c51\print-1.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
+INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
+INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
+INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
 	package
 		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:2:5-47
 		INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
+		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
 		INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-26:12
+		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:1-27:12
 		INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:1:11-69
 application
-ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:4:5-24:19
+ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:4:5-25:19
 MERGED from [com.google.firebase:firebase-analytics-ktx:18.0.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\afdc209bca9861e364ee79754a8b9a67\jetified-firebase-analytics-ktx-18.0.0\AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-analytics-ktx:18.0.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\afdc209bca9861e364ee79754a8b9a67\jetified-firebase-analytics-ktx-18.0.0\AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-common-ktx:19.4.0] C:\Program Files\Android\Android Studio\plugins\gradle\caches\transforms-2\files-2.1\4fbc7cf3c298da90240f00331d338558\jetified-firebase-common-ktx-19.4.0\AndroidManifest.xml:11:5-19:19
@@ -127,9 +127,9 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Program 
 	android:label
 		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:7:9-41
 	android:roundIcon
-		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:8:9-54
+		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:8:9-43
 	android:icon
-		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:6:9-43
+		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:6:9-38
 	android:allowBackup
 		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:5:9-35
 	android:theme
@@ -168,6 +168,10 @@ activity#com.example.healthimprovementapp.Welcome
 ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:22:9-45
 	android:name
 		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:22:19-42
+activity#com.example.healthimprovementapp.AddWorkoutActivity
+ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:23:9-55
+	android:name
+		ADDED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml:23:19-53
 uses-sdk
 INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Omar\Documents\CMSC436\cmsc436-oshawqi\CMSC436HealthImprovementApp\app\src\main\AndroidManifest.xml

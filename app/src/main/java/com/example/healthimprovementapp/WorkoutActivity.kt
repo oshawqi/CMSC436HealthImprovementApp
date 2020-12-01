@@ -37,7 +37,7 @@ class WorkoutActivity : AppCompatActivity() {
         workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
 
         //Access the workout's node in the database
-        databaseWorkouts = FirebaseDatabase.getInstance().getReference(workoutType)
+        databaseWorkouts = FirebaseDatabase.getInstance().getReference("workout").child(workoutType)
 
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText
         buttonAddWorkout = findViewById<View>(R.id.addCustomWorkoutButton) as Button
@@ -87,6 +87,7 @@ class WorkoutActivity : AppCompatActivity() {
             val exerciseListIntent = Intent(this, AddWorkoutActivity::class.java)
             exerciseListIntent.putExtra(WORKOUT_ID, id)
             exerciseListIntent.putExtra(WORKOUT_NAME, name)
+            editTextName.setText("")
             startActivityForResult(exerciseListIntent, ADD_WORKOUT_REQUEST)
 
             //The workout is actually added in the onActivityResult function
