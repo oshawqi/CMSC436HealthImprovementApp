@@ -63,7 +63,7 @@ class WorkoutExercisesActivity : AppCompatActivity() {
 
     //Adds all exercises into the list view
     private fun addAllExercises(workout : Workout) {
-        mListAdapter.addAll(workout.exerciseList)
+        mListAdapter.addAll(workout.workoutExercises)
     }
 
     private fun submitWorkout() {

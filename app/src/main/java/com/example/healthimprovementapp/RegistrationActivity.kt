@@ -10,7 +10,10 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class RegistrationActivity : AppCompatActivity() {
 
@@ -22,12 +25,14 @@ class RegistrationActivity : AppCompatActivity() {
     private var validator = Validators()
 
     private var mAuth: FirebaseAuth? = null
+    private var mDatabase : DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
         mAuth = FirebaseAuth.getInstance()
+        mDatabase = FirebaseDatabase.getInstance().getReference("users")
 
         emailTV = findViewById(R.id.email)
         passwordTV = findViewById(R.id.password)
@@ -83,8 +88,12 @@ class RegistrationActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Welcome!", Toast.LENGTH_LONG).show()
                     progressBar!!.visibility = View.GONE
 
+                    val uid = mAuth!!.currentUser!!.uid
+                    val user = User(uid, ArrayList<Workout>())
+                    mDatabase!!.setValue(user)
+
                     val intent = Intent(this@RegistrationActivity, Welcome::class.java)
-                    intent.putExtra(USER_ID, mAuth!!.currentUser!!.uid)
+                    intent.putExtra(USER_ID, user.userId)
                     startActivity(intent)
 
                 } else {

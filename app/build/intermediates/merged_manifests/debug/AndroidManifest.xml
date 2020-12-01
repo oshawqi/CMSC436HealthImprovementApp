@@ -39,6 +39,7 @@
         <activity android:name="com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity" />
         <activity android:name="com.example.healthimprovementapp.Welcome" />
         <activity android:name="com.example.healthimprovementapp.AddWorkoutActivity" />
+        <activity android:name="com.example.healthimprovementapp.UserHistoryActivity" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

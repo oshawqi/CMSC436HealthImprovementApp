@@ -52,6 +52,10 @@ class WorkoutListAdapter(private val context : Context) : BaseAdapter() {
         notifyDataSetChanged()
     }
 
+    fun addAll(inWorkouts : List<Workout>) {
+        workouts.addAll(inWorkouts)
+    }
+
     override fun getItem(position: Int): Workout {
         return workouts[position]
     }

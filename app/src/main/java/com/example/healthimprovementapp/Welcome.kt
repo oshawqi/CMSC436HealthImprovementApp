@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class Welcome : AppCompatActivity() {
@@ -23,7 +24,7 @@ class Welcome : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
 
     //Variable to hold the UID string from login screen
-    private lateinit var uid: String
+    private lateinit var uid : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,50 +39,45 @@ class Welcome : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         //Acquire the UID from the intent LoginActivity passed in
-        uid = intent.getStringExtra(USER_ID)!!
+        uid = intent.getStringExtra(USER_ID)
 
     }
 
     override fun onStart() {
         super.onStart()
         val intent = Intent(applicationContext, WorkoutActivity::class.java)
+        intent.putExtra(USER_ID, uid)
 
         mWeightLossButton.setOnClickListener{
             Log.i(TAG, "Weight Loss Selected")
-
-            intent.putExtra(USER_ID, uid)
             intent.putExtra(WORKOUT_TYPE, WEIGHT_LOSS)
             startActivity(intent)
         }
 
         mBulkUpButton.setOnClickListener{
             Log.i(TAG, "Bulk Up Selected")
-
-            intent.putExtra(USER_ID, uid)
             intent.putExtra(WORKOUT_TYPE, BULK_UP)
             startActivity(intent)
         }
 
         mEnduranceButton.setOnClickListener{
             Log.i(TAG, "Endurance Selected")
-
-            intent.putExtra(USER_ID, uid)
             intent.putExtra(WORKOUT_TYPE, ENDURANCE)
             startActivity(intent)
         }
 
         mFlexibilityButton.setOnClickListener{
             Log.i(TAG, "Flexibility Selected")
-
-            intent.putExtra(USER_ID, uid)
             intent.putExtra(WORKOUT_TYPE, FLEXIBILITY)
             startActivity(intent)
         }
 
-        //TODO: Make this pull up a simple ListView of past user accomplishments
+
         mHistoryButton.setOnClickListener {
             Log.i(TAG, "History Selected")
-            Toast.makeText(this, "User History Selected", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, UserHistoryActivity::class.java)
+            intent.putExtra(USER_ID, uid)
+            startActivity(intent)
         }
 
         mSignoutButton.setOnClickListener {
@@ -95,7 +91,8 @@ class Welcome : AppCompatActivity() {
     }
 
     companion object {
-        val TAG = "Project-Welcome"
+        val TAG = "Mine-Welcome"
+        val USER = "USER"
         val USER_ID = "USER_ID"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
         val BULK_UP = "BULK_UP"

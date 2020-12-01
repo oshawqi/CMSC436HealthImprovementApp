@@ -80,7 +80,7 @@ class AddWorkoutActivity : Activity() {
 
     private fun addExercise(exerciseName : String, numSets: Int, numReps: Int, numWeight: Int) {
         val newExercise = Exercise(exerciseName, numSets, numReps, numWeight)
-        workout.exerciseList.add(newExercise) //Adds the new exercise to this workout's exercise list
+        workout.workoutExercises.add(newExercise) //Adds the new exercise to this workout's exercise list
         mExerciseListAdapter.add(newExercise) //Adds this new exercise to the visible exercise list on the UI
 
         Log.i(TAG, "Exercise added (Name: $exerciseName, Sets: $numSets, Reps: $numReps, Weight: $numWeight")

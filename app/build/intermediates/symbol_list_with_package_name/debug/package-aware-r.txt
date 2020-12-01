@@ -1008,6 +1008,9 @@ id group_divider
 id grouping
 id groups
 id healthImprovementString
+id hiistoryView
+id historyList
+id historyString
 id history_button
 id home
 id homeAsUp
@@ -1069,6 +1072,7 @@ id rectangles
 id register
 id reps
 id repsView
+id returnButton
 id reverseSawtooth
 id right
 id right_icon
@@ -1089,6 +1093,7 @@ id search_plate
 id search_src_text
 id search_voice_btn
 id selectExisting
+id selectWorkoutAgain
 id select_dialog_listview
 id sets
 id setsView
@@ -1220,6 +1225,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout submit_workout_footer
 layout support_simple_spinner_dropdown_item
+layout user_history
 layout welcome
 layout workout_list
 mipmap ic_launcher
@@ -1256,6 +1262,7 @@ string add
 string add_exercise
 string add_exercise_button
 string app_name
+string back
 string bulk_up
 string chose_a_workout_option
 string common_google_play_services_enable_button
@@ -1300,11 +1307,14 @@ string register_new_account
 string reps
 string search_menu_title
 string select_an_existing_workout
+string select_workout_do_again
 string sets
+string show_history
 string signout
 string status_bar_notification_info_overflow
 string strength_training
 string submit_workout
+string user_history
 string view_user_history
 string weight
 string weight_loss

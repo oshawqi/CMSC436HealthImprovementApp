@@ -40,7 +40,7 @@ internal class ListViewAdapter(context: Context, resource: Int, objects: ArrayLi
         val storedViewHolder = newView.tag as ViewHolder
 
         //Set the data in the data View
-        storedViewHolder.textView.text = workout.name
+        storedViewHolder.textView.text = workout.workoutName
 
         return newView
     }

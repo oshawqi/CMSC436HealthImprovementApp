@@ -30,4 +30,8 @@
     <string name="number_of_reps">Number of Reps</string>
     <string name="signout">Signout</string>
     <string name="view_user_history">View User History</string>
+    <string name="show_history">View previously completed workouts: </string>
+    <string name="user_history">User History</string>
+    <string name="back">back</string>
+    <string name="select_workout_do_again">Select a workout to do it again: </string>
 </resources>

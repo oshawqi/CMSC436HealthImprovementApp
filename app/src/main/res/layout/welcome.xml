@@ -81,37 +81,40 @@
         android:layout_below="@+id/strengthTrainingString"
         android:layout_toRightOf="@+id/bulk_up_button"/>
 
-    <Button
-        android:id="@+id/signout_button"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/strengthTrainingString"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="223dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/bulk_up_button"
-        android:background="@color/white"
-        android:padding="10dp"
-        android:text="@string/signout"
-        android:textColor="@color/black" />
+        android:id="@+id/hiistoryView"
+        android:text="@string/show_history"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:layout_below="@+id/bulk_up_button"
+        android:layout_margin="10dp"
+        android:layout_gravity="left"/>
 
     <Button
         android:id="@+id/history_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/strengthTrainingString"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="134dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/bulk_up_button"
+        android:layout_below="@+id/hiistoryView"
+        android:layout_margin="10dp"
         android:background="@color/white"
         android:padding="10dp"
         android:text="@string/view_user_history"
         android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/signout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:text="@string/signout"
+        android:textColor="@color/black" />
+
+
 
 
 </RelativeLayout>

@@ -22,11 +22,11 @@ class WorkoutActivity : AppCompatActivity() {
     private lateinit var buttonAddWorkout: Button
     private lateinit var listViewWorkouts: ListView
     private lateinit var workoutListAdapter : WorkoutListAdapter
-    private lateinit var databaseWorkouts: DatabaseReference
 
     private lateinit var uid: String
     private lateinit var workoutType : String
 
+    private lateinit var mDatabase : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +37,9 @@ class WorkoutActivity : AppCompatActivity() {
         workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
 
         //Access the workout's node in the database
-        databaseWorkouts = FirebaseDatabase.getInstance().getReference("workout").child(workoutType)
+        mDatabase = FirebaseDatabase.getInstance().getReference("workouts").child(workoutType)
 
+        //Set up views for adding workouts
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText
         buttonAddWorkout = findViewById<View>(R.id.addCustomWorkoutButton) as Button
 
@@ -68,13 +69,6 @@ class WorkoutActivity : AppCompatActivity() {
 
         //TODO -> figure out how to set two types of listeners or create an options menu to start an edit list mode
         //to handle deleting the workouts
-
-//        listViewWorkouts.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
-//            val workout = workouts[i]
-//            //TODO: Make a dialog box pop up asking "Are you sure you want to delete this workout?" before actually deleting it
-//            deleteWorkout(workout)
-//            true
-//        }
     }
 
     private fun addWorkout() {
@@ -82,7 +76,7 @@ class WorkoutActivity : AppCompatActivity() {
         val name = editTextName.text.toString()
 
         if (!TextUtils.isEmpty(name)) {
-            val id = databaseWorkouts.push().key
+            val id = mDatabase.push().key
 
             val exerciseListIntent = Intent(this, AddWorkoutActivity::class.java)
             exerciseListIntent.putExtra(WORKOUT_ID, id)
@@ -104,10 +98,11 @@ class WorkoutActivity : AppCompatActivity() {
             if (resultCode == RESULT_OK && data != null) {
                 //Get workout from intent
                 val workout = data?.getParcelableExtra<Workout>(WORKOUT_NAME)!!
+                workout.writeToDatabase(mDatabase!!)
                 workoutListAdapter.add(workout)
 
-                val workoutString = workoutListAdapter.count.toString()
-                Log.i(TAG, "Workout received and added in onActivityResult: $workoutString")
+
+                Log.i(TAG, "Workout received and added in onActivityResult")
             } else {
                 Log.i(TAG, "Workout not received, request code not RESULT_OK or data is null")
                 Toast.makeText(this,
@@ -125,18 +120,19 @@ class WorkoutActivity : AppCompatActivity() {
     override  fun onStart() {
         super.onStart()
 
-        databaseWorkouts.addValueEventListener(object : ValueEventListener {
+        mDatabase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 //TODO -> had to delete the workouts.clear() (changed to workoutListAdapter.clear()) so the workouts would show up in the list
                 var workoutFromDatabase: Workout? = null
-                for (postSnapshot in dataSnapshot.child(uid!!).children) {
+                for (postSnapshot in dataSnapshot.children) {
                     try {
                         workoutFromDatabase = postSnapshot.getValue(Workout::class.java)
+                        Log.i(TAG, workoutFromDatabase.toString())
                     } catch (e: Exception) {
                         Log.e(TAG, e.toString())
                     } finally {
-                        workoutListAdapter.add(workoutFromDatabase!!)
+                        //workoutListAdapter.add(workoutFromDatabase!!)
                     }
                 }
 

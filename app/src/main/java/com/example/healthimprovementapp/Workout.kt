@@ -2,12 +2,10 @@ package com.example.healthimprovementapp.com.example.healthimprovementapp
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.firebase.database.DatabaseReference
 
 
 public class Workout(val workoutId: String? = "", val workoutName: String? = "", var workoutExercises: ArrayList<Exercise>) : Parcelable {
-    public val name : String? = workoutName
-    public val id : String? = workoutId
-    public val exerciseList = workoutExercises
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -23,14 +21,26 @@ public class Workout(val workoutId: String? = "", val workoutName: String? = "",
         parcel.writeList(workoutExercises as List<Exercise>)
     }
 
+    fun writeToDatabase(database : DatabaseReference) {
+        if (database == null) {
+            return
+        }
+
+        val extDb = database.child(workoutId!!).child(workoutName!!).setValue("THIS WORKED!!!")
+
+
+
+    }
+
     override fun describeContents(): Int {
         return 0
     }
 
     override fun toString(): String {
-        val numExercises = exerciseList.size.toString()
+        val numExercises = workoutExercises.size.toString()
         return "Name: $workoutName, ID: $workoutId, with $numExercises exercises"
     }
+
 
     companion object CREATOR : Parcelable.Creator<Workout> {
         override fun createFromParcel(parcel: Parcel): Workout {

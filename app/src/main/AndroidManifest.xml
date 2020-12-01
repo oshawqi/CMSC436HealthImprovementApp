@@ -21,6 +21,7 @@
         <activity android:name=".com.example.healthimprovementapp.WorkoutExercisesActivity" />
         <activity android:name=".Welcome" />
         <activity android:name=".AddWorkoutActivity"/>
+        <activity android:name=".UserHistoryActivity"/>
 
     </application>
 
