@@ -72,15 +72,18 @@ class WorkoutActivity : AppCompatActivity() {
     }
 
     private fun addWorkout() {
-        Toast.makeText(this, "Adding a custom workout...", Toast.LENGTH_LONG).show()
         val name = editTextName.text.toString()
 
         if (!TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "Adding a custom workout...", Toast.LENGTH_LONG).show()
             val id = mDatabase.push().key
 
             val exerciseListIntent = Intent(this, AddWorkoutActivity::class.java)
             exerciseListIntent.putExtra(WORKOUT_ID, id)
             exerciseListIntent.putExtra(WORKOUT_NAME, name)
+            exerciseListIntent.putExtra(WORKOUT_TYPE, workoutType)
+            exerciseListIntent.putExtra(USER_ID, uid)
+
             editTextName.setText("")
             startActivityForResult(exerciseListIntent, ADD_WORKOUT_REQUEST)
 
@@ -98,7 +101,7 @@ class WorkoutActivity : AppCompatActivity() {
             if (resultCode == RESULT_OK && data != null) {
                 //Get workout from intent
                 val workout = data?.getParcelableExtra<Workout>(WORKOUT_NAME)!!
-                workout.writeToDatabase(mDatabase!!)
+                //workout.writeToDatabase(mDatabase!!)                                                              //Am now adding to database in AddWorkoutActivity.kt
                 workoutListAdapter.add(workout)
 
 

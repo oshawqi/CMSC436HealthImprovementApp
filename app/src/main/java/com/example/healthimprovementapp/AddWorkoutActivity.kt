@@ -8,12 +8,18 @@ import android.view.View
 import android.widget.*
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class AddWorkoutActivity : Activity() {
     private var workoutName : String? = null
     private var workoutID : String? = null
     private lateinit var workout : Workout
+    private lateinit var databaseWorkouts: DatabaseReference
+    private lateinit var workoutType : String
+    private lateinit var uid: String
+
 
     private lateinit var mNameTextView : TextView
     private lateinit var mExerciseNameEditText : EditText
@@ -32,6 +38,12 @@ class AddWorkoutActivity : Activity() {
             workoutName = intent.getStringExtra(WORKOUT_NAME)
             workoutID = intent.getStringExtra(WORKOUT_ID)
             workout = Workout(workoutID!!, workoutName!!, ArrayList<Exercise>())
+            workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
+            uid = intent.getStringExtra(USER_ID) as String
+
+            //Access the workout's node in the database
+            databaseWorkouts = FirebaseDatabase.getInstance().getReference("workouts")            //TEST
+
         } else {
             finish()
         }
@@ -58,6 +70,11 @@ class AddWorkoutActivity : Activity() {
 
             if (exerciseName != null && exerciseName != "") {
                 addExercise(exerciseName, numSets, numReps, numWeight)
+                mExerciseNameEditText.setText("")
+                findViewById<EditText>(R.id.numSets).setText("")
+                findViewById<EditText>(R.id.numReps).setText("")
+                findViewById<EditText>(R.id.numWeight).setText("")
+
             } else {
                 Toast.makeText(this, "Please enter an exercise name", Toast.LENGTH_LONG)
             }
@@ -65,12 +82,18 @@ class AddWorkoutActivity : Activity() {
 
         mSubmitWorkoutButton.setOnClickListener {
             if (mExerciseListAdapter.count == 0) {
-                //TODO -> add an alert dialog to ask if they want to submit a workout with no exercises
+                //TODO -> add an alert dialog to ask if they want to submit a workout -with no exercises
             } else {
                 val workoutString = workout.toString()
                 Log.i(TAG, "Submitting Workout: $workoutString")
 
                 Toast.makeText(this,"Submitting",Toast.LENGTH_SHORT)
+
+                //Add to the database
+                val id = databaseWorkouts.push().key
+                databaseWorkouts.child(id!!).setValue(workout)
+
+                //Generate the return intent to go back to main activity
                 val returnIntent = Intent().putExtra(WORKOUT_NAME, workout)
                 setResult(RESULT_OK, returnIntent)
                 finish()
