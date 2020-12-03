@@ -28,7 +28,7 @@
         android:layout_alignBottom="@+id/numWeight"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:gravity="left"
+        android:gravity="center_vertical"
         android:text="Enter the Weight:"
         android:textSize="15dp" />
 
@@ -51,7 +51,7 @@
         android:layout_alignBottom="@+id/numReps"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:gravity="left"
+        android:gravity="center_vertical"
         android:text="@string/number_of_reps"
         android:textSize="15dp" />
 
@@ -64,7 +64,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginTop="44dp"
         android:layout_toEndOf="@+id/addWorkoutNumSetsString"
-        android:layout_toRightOf="@+id/addWorkoutExerciseNameString" />
+        android:layout_toRightOf="@+id/addWorkoutWeight" />
 
     <TextView
         android:id="@+id/addWorkoutNumSetsString"
@@ -74,7 +74,7 @@
 
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:gravity="left"
+        android:gravity="center_vertical"
         android:text="@string/number_of_sets"
         android:textSize="15dp"
         android:layout_alignBottom="@+id/numSets"/>
@@ -93,24 +93,27 @@
         android:id="@+id/addWorkoutExerciseNameString"
         android:text="@string/exercise_name"
         android:textSize="15dp"
-        android:gravity="left"
+        android:gravity="center_vertical"
         android:layout_below="@+id/addWorkoutAddExerciseString"
-        android:layout_alignBottom="@+id/addWorkoutExerciseName"/>
+        android:layout_alignBottom="@+id/addWorkoutExerciseName"
+        android:layout_alignParentBottom="@id/addWorkoutExerciseName"/>
+
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addWorkoutExerciseName"
         android:layout_below="@+id/addWorkoutAddExerciseString"
-        android:layout_toRightOf="@+id/addWorkoutExerciseNameString"/>
+        android:layout_toRightOf="@+id/addWorkoutNumSetsString"/>
 
     <Button
         android:id="@+id/addWorkoutAddExerciseButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150px"
         android:layout_below="@+id/addWorkoutWeight"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20px"
         android:text="@string/add_exercise_button" />
+
 
     <Button
         android:id="@+id/addWorkoutSubmitButton"
@@ -122,7 +125,8 @@
         android:layout_toEndOf="@+id/addWorkoutAddExerciseButton"
         android:layout_toRightOf="@+id/addWorkoutAddExerciseButton"
         android:text="@string/submit_workout"
-        android:layout_alignBottom="@+id/addWorkoutAddExerciseButton"/>
+        android:layout_alignBottom="@+id/addWorkoutAddExerciseButton"
+        android:layout_marginTop="20px"/>
 
     <ListView
         android:layout_width="match_parent"
