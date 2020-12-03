@@ -55,6 +55,10 @@ class WorkoutListAdapter(private val context : Context) : BaseAdapter() {
         notifyDataSetChanged()
     }
 
+    fun clear() {
+        workouts.clear()
+    }
+
     fun addAll(inWorkouts : List<Workout>) {
         workouts.addAll(inWorkouts)
     }

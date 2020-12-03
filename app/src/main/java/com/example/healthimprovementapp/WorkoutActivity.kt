@@ -39,7 +39,7 @@ class WorkoutActivity : AppCompatActivity() {
         workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
 
         //Access the workout's node in the database
-        mDatabase = FirebaseDatabase.getInstance().getReference("workouts")
+        mDatabase = FirebaseDatabase.getInstance().getReference("users").child(uid).child("workouts").child(workoutType)
 
         //Set up views for adding workouts
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText

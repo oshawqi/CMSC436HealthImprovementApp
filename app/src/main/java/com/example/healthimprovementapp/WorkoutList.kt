@@ -21,7 +21,7 @@ class WorkoutList(private val context: Activity, private var workouts: List<Work
 
         val workout = workouts[position]
         textViewName.text = workout.workoutName
-        textViewExercise.text = workout.workoutExercises[0].toString()                     //TODO: Make it populate more than the 1st exercise
+        textViewExercise.text = workout.workoutExercises[position].toString()                     //TODO: Make it populate more than the 1st exercise
 
         return listViewItem
     }

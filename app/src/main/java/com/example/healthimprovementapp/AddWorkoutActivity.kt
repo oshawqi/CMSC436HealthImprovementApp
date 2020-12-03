@@ -42,8 +42,7 @@ class AddWorkoutActivity : Activity() {
             uid = intent.getStringExtra(USER_ID) as String
 
             //Access the workout's node in the database
-            databaseWorkouts = FirebaseDatabase.getInstance().getReference(uid).child(
-                workoutType)         //TEST
+            databaseWorkouts = FirebaseDatabase.getInstance().getReference("users").child(uid).child("workouts").child(workoutType)                       //TEST
 
         } else {
             finish()
