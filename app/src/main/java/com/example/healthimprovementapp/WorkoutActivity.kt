@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutList
@@ -25,6 +26,7 @@ class WorkoutActivity : AppCompatActivity() {
 
     private lateinit var uid: String
     private lateinit var workoutType : String
+    private lateinit var workouts : MutableList<Workout>
 
     private lateinit var mDatabase : DatabaseReference
 
@@ -37,7 +39,7 @@ class WorkoutActivity : AppCompatActivity() {
         workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
 
         //Access the workout's node in the database
-        mDatabase = FirebaseDatabase.getInstance().getReference("workouts").child(workoutType)
+        mDatabase = FirebaseDatabase.getInstance().getReference("workouts")
 
         //Set up views for adding workouts
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText
@@ -47,6 +49,47 @@ class WorkoutActivity : AppCompatActivity() {
         listViewWorkouts = findViewById<View>(R.id.listViewWorkouts) as ListView
         workoutListAdapter = WorkoutListAdapter(this)
         listViewWorkouts.adapter = workoutListAdapter
+
+        workouts = ArrayList<Workout>()
+
+        //TODO -> figure out how to set two types of listeners or create an options menu to start an edit list mode
+        //to handle deleting the workouts
+    }
+
+    override  fun onStart() {
+        super.onStart()
+
+        mDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (!dataSnapshot.exists()) { Log.i(TAG, "No data received") }
+                workouts.clear()
+
+                var dbWorkout : Workout? = null
+
+                for (data in dataSnapshot.children) {
+                    try {
+
+                        val dataMap : Map<String, Object> = data.value as Map<String, Object>
+                        Log.i(TAG, dataMap.toString())
+                        dbWorkout = Workout(dataMap)
+
+                    } catch (e: Exception) {
+                        Log.e(TAG, e.toString())
+                    } finally {
+                        workouts.add(dbWorkout!!)
+                    }
+                }
+
+                val newAdapter : WorkoutListAdapter = WorkoutListAdapter(this@WorkoutActivity)
+                newAdapter.addAll(workouts)
+                listViewWorkouts.adapter = newAdapter
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
         buttonAddWorkout.setOnClickListener {
             addWorkout()
@@ -66,9 +109,6 @@ class WorkoutActivity : AppCompatActivity() {
             intent.putExtra(USER_ID, uid)
             startActivity(intent)
         }
-
-        //TODO -> figure out how to set two types of listeners or create an options menu to start an edit list mode
-        //to handle deleting the workouts
     }
 
     private fun addWorkout() {
@@ -118,37 +158,6 @@ class WorkoutActivity : AppCompatActivity() {
     private fun deleteWorkout(workout: Workout) {
         Toast.makeText(this, "Deleting a custom workout...", Toast.LENGTH_LONG).show()
     }
-
-
-    override  fun onStart() {
-        super.onStart()
-
-        mDatabase.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                //TODO -> had to delete the workouts.clear() (changed to workoutListAdapter.clear()) so the workouts would show up in the list
-                var workoutFromDatabase: Workout? = null
-                for (postSnapshot in dataSnapshot.children) {
-                    try {
-                        workoutFromDatabase = postSnapshot.getValue(Workout::class.java)
-                        Log.i(TAG, workoutFromDatabase.toString())
-                    } catch (e: Exception) {
-                        Log.e(TAG, e.toString())
-                    } finally {
-                        //workoutListAdapter.add(workoutFromDatabase!!)
-                    }
-                }
-
-                //val workoutListAdapter = WorkoutListAdaptor(this@WorkoutActivity ,workouts) //Reworked the workout manager to implement all of the exercises as a string and added an add function
-                //listViewWorkouts.adapter = workoutListAdapter
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
-
 
     companion object {
         const val TAG = "Mine-WorkoutActivity"

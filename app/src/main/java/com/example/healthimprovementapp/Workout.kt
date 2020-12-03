@@ -2,7 +2,9 @@ package com.example.healthimprovementapp.com.example.healthimprovementapp
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
 import com.google.firebase.database.DatabaseReference
+import java.lang.Exception
 
 
 public class Workout(val workoutId: String? = "", val workoutName: String? = "", var workoutExercises: ArrayList<Exercise>) : Parcelable {
@@ -15,21 +17,17 @@ public class Workout(val workoutId: String? = "", val workoutName: String? = "",
         }
     ){}
 
+    constructor(data : Map<String,Object>) : this(
+        data.getValue("workoutId") as String,
+        data.getValue("workoutName") as String,
+        data.getValue("workoutExercises") as ArrayList<Exercise>
+    ) {}
+
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(workoutId)
         parcel.writeString(workoutName)
         parcel.writeList(workoutExercises as List<Exercise>)
-    }
-
-    fun writeToDatabase(database : DatabaseReference) {
-        if (database == null) {
-            return
-        }
-
-        val extDb = database.child(workoutId!!).child(workoutName!!).setValue("THIS WORKED!!!")
-
-
-
     }
 
     override fun describeContents(): Int {

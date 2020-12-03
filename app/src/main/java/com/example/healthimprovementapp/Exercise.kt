@@ -13,6 +13,12 @@ data class Exercise (val exerciseName: String = "", val numSets: Int, val numRep
         parcel.readInt()
     ){}
 
+    constructor(data : Map<String, Object>) : this (
+        data.getValue("exerciseName") as String,
+        data.getValue("numSets") as Int,
+        data.getValue("numReps") as Int,
+        data.getValue("weight") as Int) {}
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(exerciseName)
         parcel.writeInt(numSets)

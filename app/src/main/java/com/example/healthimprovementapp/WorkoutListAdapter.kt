@@ -14,6 +14,9 @@ class WorkoutListAdapter(private val context : Context) : BaseAdapter() {
 
     private val workouts : ArrayList<Workout> = ArrayList<Workout>()
 
+    constructor(context : Context, workouts : ArrayList<Workout>) : this(context) {
+        this.workouts.addAll(workouts)
+    }
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val workout = workouts[position]
