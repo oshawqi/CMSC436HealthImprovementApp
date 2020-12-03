@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutList
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.user_history.*
 import kotlinx.android.synthetic.main.user_history.view.*
+import java.lang.Exception
 
 class UserHistoryActivity : AppCompatActivity() {
 
@@ -19,6 +21,8 @@ class UserHistoryActivity : AppCompatActivity() {
     private var mHistoryList : ListView? = null
     private var mListAdapter : WorkoutListAdapter? = null
     private var mReturnButton : Button? = null
+    private var workouts : ArrayList<Workout> = ArrayList<Workout>()
+    private lateinit var mDatabase : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,8 @@ class UserHistoryActivity : AppCompatActivity() {
             finish()
         }
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("user-history").child(uid)
+
         mHistoryList = findViewById(R.id.historyList)
         mListAdapter = WorkoutListAdapter(this)
         mHistoryList!!.adapter = mListAdapter
@@ -37,6 +43,43 @@ class UserHistoryActivity : AppCompatActivity() {
         mReturnButton = findViewById(R.id.returnButton)
 
         //mListAdapter!!.addAll(user.workouts)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        mDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                Log.i(TAG, error.toString())
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (!snapshot.exists()) {Log.i(TAG, "No data received")}
+                workouts.clear()
+                var workout : Workout? = null
+
+                for (workoutTypeData in snapshot.children) {
+                    val workoutType = workoutTypeData.key
+
+                    for (workoutData in workoutTypeData.children) {
+                        try {
+                            workout = Workout(workoutData.value as Map<String, Object>)
+                        } catch (e :Exception) {
+                            Log.i(TAG, e.toString())
+                        } finally {
+                            workouts.add(workout!!)
+                        }
+                    }
+                }
+
+                val newAdapter = WorkoutListAdapter(this@UserHistoryActivity)
+                newAdapter.addAll(workouts)
+                mListAdapter = newAdapter
+                historyList.adapter = newAdapter
+            }
+
+        })
 
         mReturnButton!!.setOnClickListener {
             val intent = Intent(this, Welcome::class.java)
@@ -51,9 +94,7 @@ class UserHistoryActivity : AppCompatActivity() {
             intent.putExtra(USER_ID, uid)
             startActivity(intent)
         }
-
     }
-
     companion object {
         val TAG = "Mine-UserHistory"
         val USER = "USER"
