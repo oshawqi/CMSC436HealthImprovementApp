@@ -20,8 +20,16 @@ public class Workout(val workoutId: String? = "", val workoutName: String? = "",
     constructor(data : Map<String,Object>) : this(
         data.getValue("workoutId") as String,
         data.getValue("workoutName") as String,
-        data.getValue("workoutExercises") as ArrayList<Exercise>
-    ) {}
+        ArrayList<Exercise>()
+    ) {
+        for (exerciseData in data.getValue("workoutExercises") as ArrayList<Object>) {
+            Log.i("Mine", exerciseData.toString())
+            val eMap = exerciseData as Map<String, Object>
+            val exercise = Exercise(eMap.getValue("exerciseName") as String, (eMap.getValue("numReps") as Long).toInt(),
+                (eMap.getValue("numSets") as Long).toInt(), (eMap.getValue("weight") as Long).toInt())
+            this.workoutExercises.add(exercise)
+        }
+    }
 
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

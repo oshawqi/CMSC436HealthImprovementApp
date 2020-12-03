@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun initializeViews() {

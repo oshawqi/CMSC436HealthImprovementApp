@@ -39,7 +39,7 @@ class WorkoutActivity : AppCompatActivity() {
         workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
 
         //Access the workout's node in the database
-        mDatabase = FirebaseDatabase.getInstance().getReference("users").child(uid).child("workouts").child(workoutType)
+        mDatabase = FirebaseDatabase.getInstance().getReference("users").child(uid).child(workoutType)
 
         //Set up views for adding workouts
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText
@@ -70,7 +70,6 @@ class WorkoutActivity : AppCompatActivity() {
                     try {
 
                         val dataMap : Map<String, Object> = data.value as Map<String, Object>
-                        Log.i(TAG, dataMap.toString())
                         dbWorkout = Workout(dataMap)
 
                     } catch (e: Exception) {
@@ -82,12 +81,13 @@ class WorkoutActivity : AppCompatActivity() {
 
                 val newAdapter : WorkoutListAdapter = WorkoutListAdapter(this@WorkoutActivity)
                 newAdapter.addAll(workouts)
+                workoutListAdapter = newAdapter
                 listViewWorkouts.adapter = newAdapter
 
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.i(TAG, error.toString())
             }
         })
 
@@ -107,6 +107,7 @@ class WorkoutActivity : AppCompatActivity() {
             // AND THEN GIVE A WAY FOR THE USER TO FILL IN WHAT THEY ACCOMPLISHED AND THEN SAVE IT TO THE DATABASE. A HISTORY OF OLD WORKOUTS SHOULD BE ADDED TO WELCOME.KT FOR VIEWING.
             intent.putExtra(WORKOUT_NAME, workout)
             intent.putExtra(USER_ID, uid)
+            intent.putExtra(WORKOUT_TYPE, workoutType)
             startActivity(intent)
         }
     }
@@ -116,10 +117,8 @@ class WorkoutActivity : AppCompatActivity() {
 
         if (!TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Adding a custom workout...", Toast.LENGTH_LONG).show()
-            val id = mDatabase.push().key
 
             val exerciseListIntent = Intent(this, AddWorkoutActivity::class.java)
-            exerciseListIntent.putExtra(WORKOUT_ID, id)
             exerciseListIntent.putExtra(WORKOUT_NAME, name)
             exerciseListIntent.putExtra(WORKOUT_TYPE, workoutType)
             exerciseListIntent.putExtra(USER_ID, uid)

@@ -14,8 +14,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
 
 class AddWorkoutActivity : Activity() {
     private var workoutName : String? = null
-    private var workoutID : String? = null
-    private lateinit var workout : Workout
+    private  var workoutExercises = ArrayList<Exercise>()
     private lateinit var databaseWorkouts: DatabaseReference
     private lateinit var workoutType : String
     private lateinit var uid: String
@@ -36,13 +35,11 @@ class AddWorkoutActivity : Activity() {
 
         if (intent != null) {
             workoutName = intent.getStringExtra(WORKOUT_NAME)
-            workoutID = intent.getStringExtra(WORKOUT_ID)
-            workout = Workout(workoutID!!, workoutName!!, ArrayList<Exercise>())
-            workoutType = intent.getStringExtra(WORKOUT_TYPE) as String
-            uid = intent.getStringExtra(USER_ID) as String
+            workoutType = intent.getStringExtra(WORKOUT_TYPE)
+            uid = intent.getStringExtra(USER_ID)
 
             //Access the workout's node in the database
-            databaseWorkouts = FirebaseDatabase.getInstance().getReference("users").child(uid).child("workouts").child(workoutType)                       //TEST
+            databaseWorkouts = FirebaseDatabase.getInstance().getReference("users").child(uid).child(workoutType)                       //TEST
 
         } else {
             finish()
@@ -63,50 +60,53 @@ class AddWorkoutActivity : Activity() {
         //TODO -> add a button or listener to remove exercises from the list
         //onclick listener for adding exercises to the list
         mAddExerciseButton.setOnClickListener {
-            val exerciseName = mExerciseNameEditText.text.toString()
-            val numSets = findViewById<EditText>(R.id.numSets).text.toString().toInt()
-            val numReps = findViewById<EditText>(R.id.numReps).text.toString().toInt()
-            val numWeight = findViewById<EditText>(R.id.numWeight).text.toString().toInt()
-
-            if (exerciseName != null && exerciseName != "") {
-                addExercise(exerciseName, numSets, numReps, numWeight)
-                mExerciseNameEditText.setText("")
-                findViewById<EditText>(R.id.numSets).setText("")
-                findViewById<EditText>(R.id.numReps).setText("")
-                findViewById<EditText>(R.id.numWeight).setText("")
-
-            } else {
-                Toast.makeText(this, "Please enter an exercise name", Toast.LENGTH_LONG)
-            }
+            addExercise()
         }
 
         mSubmitWorkoutButton.setOnClickListener {
-            if (mExerciseListAdapter.count == 0) {
-                //TODO -> add an alert dialog to ask if they want to submit a workout -with no exercises
-            } else {
-                val workoutString = workout.toString()
-                Log.i(TAG, "Submitting Workout: $workoutString")
-
-                Toast.makeText(this,"Submitting",Toast.LENGTH_SHORT)
-
-                //Add to the database
-                val id = databaseWorkouts.push().key
-                databaseWorkouts.child(id!!).setValue(workout)
-
-                //Generate the return intent to go back to main activity
-                val returnIntent = Intent().putExtra(WORKOUT_NAME, workout)
-                setResult(RESULT_OK, returnIntent)
-                finish()
-            }
+            submitWorkout()
         }
     }
 
-    private fun addExercise(exerciseName : String, numSets: Int, numReps: Int, numWeight: Int) {
-        val newExercise = Exercise(exerciseName, numSets, numReps, numWeight)
-        workout.workoutExercises.add(newExercise) //Adds the new exercise to this workout's exercise list
-        mExerciseListAdapter.add(newExercise) //Adds this new exercise to the visible exercise list on the UI
+    private fun addExercise() {
+        val exerciseName = mExerciseNameEditText.text.toString()
+        val numSets = findViewById<EditText>(R.id.numSets).text.toString().toInt()
+        val numReps = findViewById<EditText>(R.id.numReps).text.toString().toInt()
+        val numWeight = findViewById<EditText>(R.id.numWeight).text.toString().toInt()
 
-        Log.i(TAG, "Exercise added (Name: $exerciseName, Sets: $numSets, Reps: $numReps, Weight: $numWeight")
+        if (exerciseName != null && exerciseName != "") {
+            mExerciseNameEditText.setText("")
+            findViewById<EditText>(R.id.numSets).setText("")
+            findViewById<EditText>(R.id.numReps).setText("")
+            findViewById<EditText>(R.id.numWeight).setText("")
+
+            val newExercise = Exercise(exerciseName, numSets, numReps, numWeight)
+            workoutExercises.add(newExercise) //Adds the new exercise to this workout's exercise list
+            mExerciseListAdapter.add(newExercise) //Adds this new exercise to the visible exercise list on the UI
+
+            Log.i(TAG, "Exercise added (Name: $exerciseName, Sets: $numSets, Reps: $numReps, Weight: $numWeight")
+        } else {
+        Toast.makeText(this, "Please enter an exercise name", Toast.LENGTH_LONG)
+        }
+    }
+
+    private fun submitWorkout() {
+        if (mExerciseListAdapter.count == 0) {
+            //TODO -> add an alert dialog to ask if they want to submit a workout -with no exercises
+        } else {
+
+            Toast.makeText(this,"Submitting",Toast.LENGTH_SHORT)
+
+            //Add to the database
+            val id = databaseWorkouts.push().key
+            val workout = Workout(id!!, workoutName, workoutExercises)
+            databaseWorkouts.child(id!!).setValue(workout)
+
+            //Generate the return intent to go back to main activity
+            val returnIntent = Intent().putExtra(WORKOUT_NAME, workout)
+            setResult(RESULT_OK, returnIntent)
+            finish()
+        }
     }
 
     companion object {

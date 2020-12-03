@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.ExerciseListAdapter
 import com.example.healthimprovementapp.R
 import com.example.healthimprovementapp.Welcome
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class WorkoutExercisesActivity : AppCompatActivity() {
 
@@ -20,7 +22,9 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     private lateinit var mListAdapter : ExerciseListAdapter
     private lateinit var mSubmitButton : View
     private lateinit var mWorkout : Workout
+    private lateinit var mWorkoutType : String
     private lateinit var uid : String
+    private lateinit var mDatabase : DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +34,14 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         //Get workout from the intent
         mWorkout = intent.getParcelableExtra<Workout>(WORKOUT_NAME)
         uid = intent.getStringExtra(USER_ID)
+        mWorkoutType = intent.getStringExtra(WORKOUT_TYPE)
         if (mWorkout == null) {
-            Log.i(TAG, "Workout not received in the intent... finishing")
+            Log.i(TAG, "Intent Data not received properly... finishing")
             finish()
         }
+
+        //Init database reference
+        mDatabase = FirebaseDatabase.getInstance().getReference("user-history").child(uid).child(mWorkoutType)
 
         //Set workout name on UI
         mWorkoutNameView = findViewById(R.id.workoutName)
@@ -54,6 +62,10 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         mListAdapter = ExerciseListAdapter(this)
         mListView.adapter = mListAdapter
         addAllExercises(mWorkout)
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         mSubmitButton.setOnClickListener {
             submitWorkout()
@@ -67,6 +79,7 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     }
 
     private fun submitWorkout() {
+        mDatabase.child(mWorkout.workoutId!!).setValue(mWorkout)
         val intent = Intent(this, Welcome::class.java)
         intent.putExtra(USER_ID, uid)
         startActivity(intent)
@@ -75,9 +88,12 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     companion object {
         const val TAG = "Mine-WorkoutExercisesActivity:"
         const val WORKOUT_NAME = "WORKOUT_NAME"
-        const val WORKOUT_ID = "WORKOUT_ID"
-        const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
+        val WORKOUT_TYPE = "WORKOUT_TYPE"
+        val BULK_UP = "BULK_UP"
+        val WEIGHT_LOSS = "WEIGHT_LOSS"
+        val ENDURANCE = "ENDURANCE"
+        val FLEXIBILITY = "FLEXIBILITY"
         const val ADD_WORKOUT_REQUEST = 0
-        val USER_ID = "USER_ID"
+        const val USER_ID = "USER_ID"
     }
 }
