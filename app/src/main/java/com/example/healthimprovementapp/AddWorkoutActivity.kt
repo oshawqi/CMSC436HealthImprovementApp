@@ -3,6 +3,7 @@ package com.example.healthimprovementapp
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -12,6 +13,7 @@ import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.list_item.view.*
+import org.w3c.dom.Text
 
 class AddWorkoutActivity : AppCompatActivity() {
     private var workoutName : String? = null
@@ -102,25 +104,38 @@ class AddWorkoutActivity : AppCompatActivity() {
         mExerciseListAdapter.removeAt(pos)
     }
 
+    //This function checks that an exercise has legitimate parameters and adds it to a workout
     private fun addExercise() {
         val exerciseName = mExerciseNameEditText.text.toString()
-        val numSets = mSetsEditText.text.toString().toInt()
-        val numReps = mRepsEditText.text.toString().toInt()
-        val numWeight = mWeightEditText.text.toString().toInt()
+        val numSets = mSetsEditText.text.toString()
+        val numReps = mRepsEditText.text.toString()
+        val numWeight = mWeightEditText.text.toString()
 
-        if (exerciseName != null && exerciseName != "") {
-            mExerciseNameEditText.setText("")
-            findViewById<EditText>(R.id.numSets).setText("")
-            findViewById<EditText>(R.id.numReps).setText("")
-            findViewById<EditText>(R.id.numWeight).setText("")
+        //Checks that integers are used for the number fields (reps, sets, weight)
+        if (TextUtils.isDigitsOnly(numSets) && TextUtils.isDigitsOnly(numReps) &&
+            TextUtils.isDigitsOnly(numWeight) && !TextUtils.isEmpty(numSets) &&
+            !TextUtils.isEmpty(numReps) && !TextUtils.isEmpty(numWeight)) {
 
-            val newExercise = Exercise(exerciseName, numSets, numReps, numWeight)
-            workoutExercises.add(newExercise) //Adds the new exercise to this workout's exercise list
-            mExerciseListAdapter.add(newExercise) //Adds this new exercise to the visible exercise list on the UI
+            if (exerciseName != null && exerciseName != "") {
+                mExerciseNameEditText.setText("")
+                findViewById<EditText>(R.id.numSets).setText("")
+                findViewById<EditText>(R.id.numReps).setText("")
+                findViewById<EditText>(R.id.numWeight).setText("")
 
-            Log.i(TAG, "Exercise added (Name: $exerciseName, Sets: $numSets, Reps: $numReps, Weight: $numWeight")
-        } else {
-        Toast.makeText(this, "Please enter an exercise name", Toast.LENGTH_LONG)
+                val newExercise = Exercise(exerciseName, numSets.toInt(), numReps.toInt(), numWeight.toInt())
+                workoutExercises.add(newExercise) //Adds the new exercise to this workout's exercise list
+                mExerciseListAdapter.add(newExercise) //Adds this new exercise to the visible exercise list on the UI
+
+                Log.i(
+                    TAG,
+                    "Exercise added (Name: $exerciseName, Sets: $numSets, Reps: $numReps, Weight: $numWeight"
+                )
+            } else {
+                Toast.makeText(this, "Please enter an exercise name", Toast.LENGTH_LONG).show()
+            }
+        }
+        else {
+            Toast.makeText(this, "Please enter integers only for Sets, Reps and Weight", Toast.LENGTH_LONG).show()
         }
     }
 
