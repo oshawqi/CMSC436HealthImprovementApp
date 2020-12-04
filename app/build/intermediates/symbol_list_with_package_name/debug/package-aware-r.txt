@@ -919,6 +919,7 @@ id add
 id addCustomWorkoutButton
 id addWorkoutAddExerciseButton
 id addWorkoutAddExerciseString
+id addWorkoutCancelButton
 id addWorkoutExerciseList
 id addWorkoutExerciseName
 id addWorkoutExerciseNameString
@@ -948,6 +949,7 @@ id blocking
 id bottom
 id bounce
 id bulk_up_button
+id buttonGroup
 id buttonPanel
 id cache_measures
 id center
@@ -1092,7 +1094,7 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
-id selectExisting
+id selectAWorkout
 id selectWorkoutAgain
 id select_dialog_listview
 id sets
@@ -1213,6 +1215,7 @@ layout activity_workout_list
 layout add_workout
 layout custom_dialog
 layout exercise_list
+layout fragment_delete_dialog
 layout list_item
 layout notification_action
 layout notification_action_tombstone
@@ -1264,6 +1267,7 @@ string add_exercise_button
 string app_name
 string back
 string bulk_up
+string cancel
 string chose_a_workout_option
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text

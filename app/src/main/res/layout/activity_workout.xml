@@ -41,10 +41,9 @@
     </Button>
 
     <TextView
-        android:id="@+id/selectExisting"
+        android:id="@+id/selectAWorkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/select_an_existing_workout"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -57,7 +56,7 @@
         android:id="@+id/listViewWorkouts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectExisting">
+        android:layout_below="@id/selectAWorkout">
     </ListView>
 
 </RelativeLayout>

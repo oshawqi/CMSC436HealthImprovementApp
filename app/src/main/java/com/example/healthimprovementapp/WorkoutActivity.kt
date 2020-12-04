@@ -20,6 +20,7 @@ import java.util.*
 class WorkoutActivity : AppCompatActivity() {
 
     private lateinit var editTextName: EditText
+    private lateinit var selectWorkoutTextView : TextView
     private lateinit var buttonAddWorkout: Button
     private lateinit var listViewWorkouts: ListView
     private lateinit var workoutListAdapter : WorkoutListAdapter
@@ -44,6 +45,8 @@ class WorkoutActivity : AppCompatActivity() {
 
         //Set up views for adding workouts
         editTextName = findViewById<View>(R.id.customWorkoutName) as EditText
+        selectWorkoutTextView = findViewById(R.id.selectAWorkout)
+        selectWorkoutTextView.text = "Select an existing ${formatWorkoutType(workoutType)} workout"
         buttonAddWorkout = findViewById<View>(R.id.addCustomWorkoutButton) as Button
 
         //setup list view and adapter
@@ -52,9 +55,6 @@ class WorkoutActivity : AppCompatActivity() {
         listViewWorkouts.adapter = workoutListAdapter
 
         workouts = ArrayList<Workout>()
-
-        //TODO -> figure out how to set two types of listeners or create an options menu to start an edit list mode
-        //to handle deleting the workouts
     }
 
     override  fun onStart() {
@@ -111,10 +111,11 @@ class WorkoutActivity : AppCompatActivity() {
             intent.putExtra(WORKOUT_TYPE, workoutType)
             startActivity(intent)
         }
+
         listViewWorkouts.onItemLongClickListener = AdapterView.OnItemLongClickListener {
             adapterView, view, i, l ->
             mWorkout = mDatabase.child(workoutListAdapter.getItem(i).workoutId as String)
-            var mDialog = DeleteDialogFragment.newInstance(workoutListAdapter.getItem(i))
+            var mDialog = DeleteDialogFragment.newInstance(workoutListAdapter.getItem(i) as Object, WORKOUT)
             mDialog.show(supportFragmentManager, "DeleteDialog")
             true
 
@@ -155,33 +156,36 @@ class WorkoutActivity : AppCompatActivity() {
 
 
                 Log.i(TAG, "Workout received and added in onActivityResult")
+            } else if (resultCode == RESULT_CANCELED){
+                Log.i(TAG, "Add workout canceled")
             } else {
-                Log.i(TAG, "Workout not received, request code not RESULT_OK or data is null")
                 Toast.makeText(this,
                     "Were sorry something went wrong. Please try to add your workout again!", Toast.LENGTH_LONG)
             }
         }
     }
 
-    //TODO: Implement this
     internal fun deleteWorkout(workout: Workout) {
         mWorkout.removeValue()
+    }
 
+    private fun formatWorkoutType(wType : String) : String {
+        var outType = wType.toLowerCase()
 
+        if (outType.contains(Regex("_"))) {
+            outType = outType.replace("_", " ")
+        }
+
+        return outType
     }
 
     companion object {
         const val TAG = "Mine-WorkoutActivity"
         const val WORKOUT_NAME = "WORKOUT_NAME"
-        const val WORKOUT_ID = "WORKOUT_ID"
-        const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
         const val ADD_WORKOUT_REQUEST = 0
+        const val WORKOUT = "WORKOUT"
         val USER_ID = "USER_ID"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
-        val BULK_UP = "BULK_UP"
-        val WEIGHT_LOSS = "WEIGHT_LOSS"
-        val ENDURANCE = "ENDURANCE"
-        val FLEXIBILITY = "FLEXIBILITY"
     }
 
 }

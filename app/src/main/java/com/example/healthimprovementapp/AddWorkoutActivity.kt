@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class AddWorkoutActivity : Activity() {
+class AddWorkoutActivity : AppCompatActivity() {
     private var workoutName : String? = null
     private  var workoutExercises = ArrayList<Exercise>()
     private lateinit var databaseWorkouts: DatabaseReference
@@ -22,8 +23,12 @@ class AddWorkoutActivity : Activity() {
 
     private lateinit var mNameTextView : TextView
     private lateinit var mExerciseNameEditText : EditText
+    private lateinit var mSetsEditText : EditText
+    private lateinit var mRepsEditText : EditText
+    private lateinit var mWeightEditText : EditText
     private lateinit var mAddExerciseButton : Button
     private lateinit var mSubmitWorkoutButton : Button
+    private lateinit var mCancelButton : Button
     private lateinit var mExerciseListView : ListView
 
     private lateinit var mExerciseListAdapter : ExerciseListAdapter
@@ -49,16 +54,37 @@ class AddWorkoutActivity : Activity() {
         mNameTextView = findViewById(R.id.addWorkoutName)
         mNameTextView.text = workoutName
         mExerciseNameEditText = findViewById(R.id.addWorkoutExerciseName)
+        mSetsEditText = findViewById(R.id.numSets)
+        mWeightEditText = findViewById(R.id.numWeight)
+        mRepsEditText = findViewById(R.id.numReps)
         mAddExerciseButton = findViewById(R.id.addWorkoutAddExerciseButton)
         mSubmitWorkoutButton = findViewById(R.id.addWorkoutSubmitButton)
+        mCancelButton = findViewById(R.id.addWorkoutCancelButton)
 
         //set up the list view and adapter
         mExerciseListView = findViewById(R.id.addWorkoutExerciseList)
         mExerciseListAdapter = ExerciseListAdapter(this)
         mExerciseListView.adapter = mExerciseListAdapter
 
-        //TODO -> add a button or listener to remove exercises from the list
-        //onclick listener for adding exercises to the list
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        mExerciseListView.setOnItemClickListener { adapterView, view, i, l ->
+            val exercise = mExerciseListAdapter.getItem(i) as Exercise
+            mExerciseListAdapter.removeAt(i)
+            mExerciseNameEditText.setText(exercise.exerciseName)
+            mSetsEditText.setText(exercise.numSets.toString())
+            mRepsEditText.setText(exercise.numReps.toString())
+            mWeightEditText.setText(exercise.weight.toString())
+        }
+
+        mExerciseListView.setOnItemLongClickListener { adapterView, view, i, l ->
+            var mDialog = DeleteDialogFragment.newInstance(i as Object, EXERCISE)
+            mDialog.show(supportFragmentManager, "DeleteDialog")
+            true
+        }
         mAddExerciseButton.setOnClickListener {
             addExercise()
         }
@@ -66,13 +92,21 @@ class AddWorkoutActivity : Activity() {
         mSubmitWorkoutButton.setOnClickListener {
             submitWorkout()
         }
+
+        mCancelButton.setOnClickListener {
+            cancelAddWorkout()
+        }
+    }
+
+    internal fun deleteExercise(pos : Int) {
+        mExerciseListAdapter.removeAt(pos)
     }
 
     private fun addExercise() {
         val exerciseName = mExerciseNameEditText.text.toString()
-        val numSets = findViewById<EditText>(R.id.numSets).text.toString().toInt()
-        val numReps = findViewById<EditText>(R.id.numReps).text.toString().toInt()
-        val numWeight = findViewById<EditText>(R.id.numWeight).text.toString().toInt()
+        val numSets = mSetsEditText.text.toString().toInt()
+        val numReps = mRepsEditText.text.toString().toInt()
+        val numWeight = mWeightEditText.text.toString().toInt()
 
         if (exerciseName != null && exerciseName != "") {
             mExerciseNameEditText.setText("")
@@ -107,19 +141,20 @@ class AddWorkoutActivity : Activity() {
             setResult(RESULT_OK, returnIntent)
             finish()
         }
+
+    }
+
+    private fun cancelAddWorkout() {
+        setResult(RESULT_CANCELED, null)
+        finish()
     }
 
     companion object {
         val TAG = "Mine-AddWorkoutActivity:"
         const val WORKOUT_NAME = "WORKOUT_NAME"
-        const val WORKOUT_ID = "WORKOUT_ID"
-        const val WORKOUT_EXERCISES = "WORKOUT_EXERCISES"
+        const val EXERCISE = "EXERCISE"
         val USER_ID = "USER_ID"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
-        val BULK_UP = "BULK_UP"
-        val WEIGHT_LOSS = "WEIGHT_LOSS"
-        val ENDURANCE = "ENDURANCE"
-        val FLEXIBILITY = "FLEXIBILITY"
         const val REQUEST_CODE = 2
     }
 }

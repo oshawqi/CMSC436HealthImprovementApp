@@ -21,7 +21,7 @@ class UserHistoryActivity : AppCompatActivity() {
     private var mHistoryList : ListView? = null
     private var mListAdapter : WorkoutListAdapter? = null
     private var mReturnButton : Button? = null
-    private var workouts : ArrayList<Workout> = ArrayList<Workout>()
+    private lateinit var workouts : MutableMap<Workout, String>
     private lateinit var mDatabase : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +56,7 @@ class UserHistoryActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (!snapshot.exists()) {Log.i(TAG, "No data received")}
-                workouts.clear()
+                workouts = mutableMapOf()
                 var workout : Workout? = null
 
                 for (workoutTypeData in snapshot.children) {
@@ -68,13 +68,13 @@ class UserHistoryActivity : AppCompatActivity() {
                         } catch (e :Exception) {
                             Log.i(TAG, e.toString())
                         } finally {
-                            workouts.add(workout!!)
+                            workouts!![workout!!] = workoutType!!
                         }
                     }
                 }
 
                 val newAdapter = WorkoutListAdapter(this@UserHistoryActivity)
-                newAdapter.addAll(workouts)
+                newAdapter.addAll(workouts.keys.toList())
                 mListAdapter = newAdapter
                 historyList.adapter = newAdapter
             }
@@ -90,15 +90,17 @@ class UserHistoryActivity : AppCompatActivity() {
         mHistoryList!!.setOnItemClickListener { adapterView, view, i, l ->
             val workout = mListAdapter!!.getItem(i)
             val intent = Intent(this, WorkoutExercisesActivity::class.java)
+            intent.putExtra(WORKOUT_TYPE, workouts!![workout])
             intent.putExtra(WORKOUT_NAME, workout)
             intent.putExtra(USER_ID, uid)
             startActivity(intent)
         }
     }
     companion object {
-        val TAG = "Mine-UserHistory"
+        const val TAG = "Mine-UserHistory"
         val USER = "USER"
-        val USER_ID = "USER_ID"
+        const val USER_ID = "USER_ID"
         const val WORKOUT_NAME = "WORKOUT_NAME"
+        const val WORKOUT_TYPE = "WORKOUT_TYPE"
     }
 }

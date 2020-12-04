@@ -71,6 +71,7 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
 
     fun removeAt(position: Int) {
         exercises.removeAt(position)
+        notifyDataSetChanged()
     }
 
     internal class ViewHolder {

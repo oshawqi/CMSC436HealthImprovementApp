@@ -1,5 +1,6 @@
 package com.example.healthimprovementapp
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 
 import androidx.fragment.app.DialogFragment
+import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 
 
@@ -17,9 +19,7 @@ import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
  * Use the [DeleteDialogFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DeleteDialogFragment(val workout: Workout) : DialogFragment() {
-    // TODO: Rename and change types of parameters
-
+class DeleteDialogFragment(val item : Object, val type : String) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(activity)
@@ -38,14 +38,21 @@ class DeleteDialogFragment(val workout: Workout) : DialogFragment() {
             .setPositiveButton(
                 "Yes"
             ) { _, _ ->
-                (activity as WorkoutActivity).deleteWorkout(workout)
+               if (type == WORKOUT) {
+                   (activity as WorkoutActivity).deleteWorkout(item as Workout)
+               } else if (type == EXERCISE) {
+                   (activity as AddWorkoutActivity).deleteExercise(item as Int)
+               }
             }.create()
     }
 
     companion object {
 
-        fun newInstance(workout: Workout): DeleteDialogFragment {
-            return DeleteDialogFragment(workout)
+        fun newInstance(item : Object, type : String): DeleteDialogFragment {
+            return DeleteDialogFragment(item, type)
         }
+
+        val EXERCISE = "EXERCISE"
+        val WORKOUT = "WORKOUT"
     }
 }

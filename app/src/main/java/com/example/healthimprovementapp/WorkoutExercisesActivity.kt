@@ -9,9 +9,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthimprovementapp.ExerciseListAdapter
-import com.example.healthimprovementapp.R
-import com.example.healthimprovementapp.Welcome
+import com.example.healthimprovementapp.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -71,6 +69,13 @@ class WorkoutExercisesActivity : AppCompatActivity() {
             submitWorkout()
         }
 
+        mListView.setOnItemClickListener { adapterView, view, i, l ->
+            //TODO -> add a fragment that allows you to enter a new set reps and weight that also edits
+            // them in the list adapter and for the workout in the database
+            // we should probably have two options to replace the normal values in the workout or to make it an
+            // entirely new workout with a new id.
+        }
+
     }
 
     //Adds all exercises into the list view
@@ -89,10 +94,6 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         const val TAG = "Mine-WorkoutExercisesActivity:"
         const val WORKOUT_NAME = "WORKOUT_NAME"
         val WORKOUT_TYPE = "WORKOUT_TYPE"
-        val BULK_UP = "BULK_UP"
-        val WEIGHT_LOSS = "WEIGHT_LOSS"
-        val ENDURANCE = "ENDURANCE"
-        val FLEXIBILITY = "FLEXIBILITY"
         const val ADD_WORKOUT_REQUEST = 0
         const val USER_ID = "USER_ID"
     }

@@ -1,47 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/black">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addWorkoutName"
         android:textSize="50dp"
-        android:gravity="center"/>
-
-    <EditText
-        android:id="@+id/numWeight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numReps"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/addWorkoutNumRepsString"
-        android:layout_toRightOf="@+id/addWorkoutWeight" />
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_margin="5dp"/>
 
     <TextView
-        android:id="@+id/addWorkoutWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addWorkoutNumRepsString"
-        android:layout_alignBottom="@+id/numWeight"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:gravity="center_vertical"
-        android:text="Enter the Weight:"
-        android:textSize="15dp" />
-
-    <EditText
-        android:id="@+id/numReps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/numSets"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="-2dp"
-        android:layout_toEndOf="@+id/addWorkoutNumRepsString"
-        android:layout_toRightOf="@+id/addWorkoutNumRepsString" />
+        android:id="@+id/addWorkoutAddExerciseString"
+        android:text="@string/add_exercise"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_below="@+id/addWorkoutName"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutExerciseNameString"
+        android:text="@string/exercise_name"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/addWorkoutAddExerciseString"
+        android:layout_alignBottom="@+id/addWorkoutExerciseName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addWorkoutExerciseName"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:layout_below="@+id/addWorkoutAddExerciseString"
+        android:layout_toRightOf="@+id/addWorkoutExerciseNameString"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/addWorkoutNumSetsString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/number_of_sets"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:layout_below="@+id/addWorkoutExerciseNameString"
+        android:layout_alignBottom="@+id/numSets"/>
+
+    <EditText
+        android:id="@+id/numSets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addWorkoutExerciseNameString"
+        android:layout_toRightOf="@+id/addWorkoutNumSetsString"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:layout_margin="5dp"/>
 
     <TextView
         android:id="@+id/addWorkoutNumRepsString"
@@ -49,91 +72,86 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addWorkoutNumSetsString"
         android:layout_alignBottom="@+id/numReps"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:text="@string/number_of_reps"
+        android:textColor="@color/white"
+        android:textSize="15dp"/>
+
+    <EditText
+        android:id="@+id/numReps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:layout_below="@+id/numSets"
+        android:layout_toRightOf="@+id/addWorkoutNumRepsString"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/addWorkoutWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addWorkoutNumRepsString"
+        android:layout_alignBottom="@+id/numWeight"
+        android:gravity="center_vertical"
+        android:text="Enter the Weight:"
+        android:textColor="@color/white"
         android:textSize="15dp" />
 
     <EditText
-        android:id="@+id/numSets"
+        android:id="@+id/numWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addWorkoutAddExerciseString"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="44dp"
-        android:layout_toEndOf="@+id/addWorkoutNumSetsString"
-        android:layout_toRightOf="@+id/addWorkoutWeight" />
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:layout_below="@+id/numReps"
+        android:layout_toRightOf="@+id/addWorkoutWeight"
+        android:layout_margin="5dp"/>
 
-    <TextView
-        android:id="@+id/addWorkoutNumSetsString"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addWorkoutExerciseNameString"
-
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:gravity="center_vertical"
-        android:text="@string/number_of_sets"
-        android:textSize="15dp"
-        android:layout_alignBottom="@+id/numSets"/>
-
-    <TextView
+    <RelativeLayout
+        android:id="@+id/buttonGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/addWorkoutAddExerciseString"
-        android:text="@string/add_exercise"
-        android:textSize="20dp"
-        android:layout_below="@+id/addWorkoutName"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addWorkoutExerciseNameString"
-        android:text="@string/exercise_name"
-        android:textSize="15dp"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/addWorkoutAddExerciseString"
-        android:layout_alignBottom="@+id/addWorkoutExerciseName"
-        android:layout_alignParentBottom="@id/addWorkoutExerciseName"/>
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/addWorkoutExerciseName"
-        android:layout_below="@+id/addWorkoutAddExerciseString"
-        android:layout_toRightOf="@+id/addWorkoutNumSetsString"/>
-
-    <Button
-        android:id="@+id/addWorkoutAddExerciseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="150px"
+        android:layout_height="50dp"
+        android:gravity="center"
         android:layout_below="@+id/addWorkoutWeight"
-        android:layout_marginTop="20px"
-        android:text="@string/add_exercise_button" />
+        android:layout_margin="5dp">
 
+        <Button
+            android:id="@+id/addWorkoutAddExerciseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/add_exercise_button"
+            android:backgroundTint="@color/white"
+            android:layout_alignParentStart="true"/>
 
-    <Button
-        android:id="@+id/addWorkoutSubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numWeight"
-        android:layout_marginStart="147dp"
-        android:layout_marginLeft="130dp"
-        android:layout_toEndOf="@+id/addWorkoutAddExerciseButton"
-        android:layout_toRightOf="@+id/addWorkoutAddExerciseButton"
-        android:text="@string/submit_workout"
-        android:layout_alignBottom="@+id/addWorkoutAddExerciseButton"
-        android:layout_marginTop="20px"/>
+        <Button
+            android:id="@+id/addWorkoutSubmitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/addWorkoutAddExerciseButton"
+            android:text="@string/submit_workout"
+            android:backgroundTint="@color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/addWorkoutCancelButton"
+            android:text="@string/cancel"
+            android:backgroundTint="@color/white"
+            android:layout_toRightOf="@+id/addWorkoutSubmitButton"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addWorkoutExerciseList"
         android:background="@color/black"
-        android:layout_below="@+id/addWorkoutAddExerciseButton"/>
+        android:layout_below="@+id/buttonGroup"/>
 
 
 
