@@ -29,6 +29,7 @@ class WorkoutActivity : AppCompatActivity() {
     private lateinit var workouts : MutableList<Workout>
 
     private lateinit var mDatabase : DatabaseReference
+    private lateinit var mWorkout: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,6 +111,14 @@ class WorkoutActivity : AppCompatActivity() {
             intent.putExtra(WORKOUT_TYPE, workoutType)
             startActivity(intent)
         }
+        listViewWorkouts.onItemLongClickListener = AdapterView.OnItemLongClickListener {
+            adapterView, view, i, l ->
+            mWorkout = mDatabase.child(workoutListAdapter.getItem(i).workoutId as String)
+            var mDialog = DeleteDialogFragment.newInstance(workoutListAdapter.getItem(i))
+            mDialog.show(supportFragmentManager, "DeleteDialog")
+            true
+
+        }
     }
 
     private fun addWorkout() {
@@ -133,6 +142,7 @@ class WorkoutActivity : AppCompatActivity() {
         }
     }
 
+
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
@@ -154,8 +164,10 @@ class WorkoutActivity : AppCompatActivity() {
     }
 
     //TODO: Implement this
-    private fun deleteWorkout(workout: Workout) {
-        Toast.makeText(this, "Deleting a custom workout...", Toast.LENGTH_LONG).show()
+    internal fun deleteWorkout(workout: Workout) {
+        mWorkout.removeValue()
+
+
     }
 
     companion object {
