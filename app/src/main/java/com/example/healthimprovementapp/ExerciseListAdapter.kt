@@ -69,6 +69,11 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
         notifyDataSetChanged()
     }
 
+    fun editExerciseAt(pos : Int, name : String, sets : Int, reps : Int, weight : Int) {
+        exercises[pos] = Exercise(name, sets, reps, weight)
+        notifyDataSetChanged()
+    }
+
     fun removeAt(position: Int) {
         exercises.removeAt(position)
         notifyDataSetChanged()

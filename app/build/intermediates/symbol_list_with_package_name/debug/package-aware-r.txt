@@ -1010,9 +1010,9 @@ id group_divider
 id grouping
 id groups
 id healthImprovementString
-id hiistoryView
 id historyList
 id historyString
+id historyView
 id history_button
 id home
 id homeAsUp
@@ -1044,6 +1044,7 @@ id message
 id middle
 id motion_base
 id multiply
+id name
 id never
 id none
 id normal
@@ -1073,6 +1074,7 @@ id ratio
 id rectangles
 id register
 id reps
+id repsString
 id repsView
 id returnButton
 id reverseSawtooth
@@ -1098,6 +1100,7 @@ id selectAWorkout
 id selectWorkoutAgain
 id select_dialog_listview
 id sets
+id setsString
 id setsView
 id shortcut
 id showCustom
@@ -1156,6 +1159,7 @@ id up
 id useLogo
 id visible
 id weight
+id weightString
 id weightView
 id weight_loss_button
 id wide
@@ -1214,6 +1218,7 @@ layout activity_workout_exercise
 layout activity_workout_list
 layout add_workout
 layout custom_dialog
+layout edit_exercise_fragment
 layout exercise_list
 layout fragment_delete_dialog
 layout list_item
@@ -1268,7 +1273,7 @@ string app_name
 string back
 string bulk_up
 string cancel
-string chose_a_workout_option
+string choose_a_workout_option
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -1289,6 +1294,7 @@ string common_signin_button_text
 string common_signin_button_text_long
 string confirm_password
 string default_web_client_id
+string edit_exercise
 string email
 string endurance
 string enter_a_workout_name

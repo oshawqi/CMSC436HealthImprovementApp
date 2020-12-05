@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(USER_ID, mAuth!!.currentUser!!.uid)
             startActivity(intent)
         }
+
         setContentView(R.layout.activity_main)
 
         initializeViews()

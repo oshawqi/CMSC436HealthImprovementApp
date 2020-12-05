@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Weight Room</string>
     <string name="welcome">Welcome!</string>
-    <string name="chose_a_workout_option">Choose a Workout Type from Below:</string>
+    <string name="choose_a_workout_option">Choose a Workout Type from Below:</string>
     <string name="health_improvement">Health Improvement: </string>
     <string name="strength_training">Strength Training: </string>
     <string name="weight_loss">Weight Loss</string>
@@ -35,4 +35,5 @@
     <string name="back">Back</string>
     <string name="select_workout_do_again">Select a Workout to Do It Again: </string>
     <string name="cancel">Cancel</string>
+    <string name="edit_exercise">Edit exercise:</string>
 </resources>

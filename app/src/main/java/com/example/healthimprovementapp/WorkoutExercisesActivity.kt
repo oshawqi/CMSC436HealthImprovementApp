@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class WorkoutExercisesActivity : AppCompatActivity() {
+class WorkoutExercisesActivity : AppCompatActivity(), EditExerciseDialogFragment.EditListener,
+    SubmitDialogFragment.SubmitListener {
 
     private lateinit var mWorkoutNameView : TextView
     private lateinit var mListView : ListView
@@ -23,6 +25,10 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     private lateinit var mWorkoutType : String
     private lateinit var uid : String
     private lateinit var mDatabase : DatabaseReference
+    private lateinit var mHistoryDatabase : DatabaseReference
+    private lateinit var mUserDatabase : DatabaseReference
+
+    private var changesMade = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +45,9 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         }
 
         //Init database reference
-        mDatabase = FirebaseDatabase.getInstance().getReference("user-history").child(uid).child(mWorkoutType)
+        mDatabase = FirebaseDatabase.getInstance().reference
+        mHistoryDatabase = mDatabase.child("user-history").child(uid).child(mWorkoutType)
+        mUserDatabase = mDatabase.child("users").child(uid).child(mWorkoutType)
 
         //Set workout name on UI
         mWorkoutNameView = findViewById(R.id.workoutName)
@@ -70,12 +78,21 @@ class WorkoutExercisesActivity : AppCompatActivity() {
         }
 
         mListView.setOnItemClickListener { adapterView, view, i, l ->
-            //TODO -> add a fragment that allows you to enter a new set reps and weight that also edits
-            // them in the list adapter and for the workout in the database
-            // we should probably have two options to replace the normal values in the workout or to make it an
-            // entirely new workout with a new id.
+            val dialog = EditExerciseDialogFragment.newInstance(i,
+                (mListAdapter.getItem(i) as Exercise).exerciseName)
+            dialog.show(supportFragmentManager, "EditExerciseDialog")
         }
 
+    }
+
+    override fun onDialogPositiveClick(pos: Int, name: String, sets: Int, reps: Int, weight: Int) {
+        mListAdapter.editExerciseAt(pos, name, sets, reps, weight)
+        mWorkout.workoutExercises[pos] = Exercise(name,sets,reps,weight)
+        changesMade = true
+    }
+
+    override fun onDialogNegativeClick() {
+        Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show()
     }
 
     //Adds all exercises into the list view
@@ -84,12 +101,27 @@ class WorkoutExercisesActivity : AppCompatActivity() {
     }
 
     private fun submitWorkout() {
-        mDatabase.child(mWorkout.workoutId!!).setValue(mWorkout)
+        if (changesMade) {
+            val dialog = SubmitDialogFragment.newInstance()
+            dialog.show(supportFragmentManager, "SubmitDialog")
+        } else {
+            mUserDatabase.child(mWorkout.workoutId!!).setValue(mWorkout)
+            val intent = Intent(this, Welcome::class.java)
+            intent.putExtra(USER_ID, uid)
+            startActivity(intent)
+        }
+    }
+
+    override fun onSubmitCopy() {
+        val id = mUserDatabase.push().key
+        mUserDatabase.child(mWorkout.workoutId!!).removeValue()
+        val workout : Workout = Workout(id!!, mWorkout.workoutName, mWorkout.workoutExercises)
+        mUserDatabase.child(id!!).setValue(workout)
+        mHistoryDatabase.child(id!!).setValue(workout)
         val intent = Intent(this, Welcome::class.java)
         intent.putExtra(USER_ID, uid)
         startActivity(intent)
     }
-
     companion object {
         const val TAG = "Mine-WorkoutExercisesActivity:"
         const val WORKOUT_NAME = "WORKOUT_NAME"

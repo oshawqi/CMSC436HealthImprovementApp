@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/fitness_goal_TextView"
-        android:text="@string/chose_a_workout_option"
+        android:text="@string/choose_a_workout_option"
         android:layout_gravity="left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hiistoryView"
+        android:id="@+id/historyView"
         android:text="@string/show_history"
         android:textColor="@color/white"
         android:textSize="30dp"
@@ -96,7 +96,7 @@
         android:id="@+id/history_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/hiistoryView"
+        android:layout_below="@+id/historyView"
         android:layout_margin="10dp"
         android:background="@color/white"
         android:padding="10dp"
