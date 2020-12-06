@@ -3,7 +3,7 @@ package com.example.healthimprovementapp.com.example.healthimprovementapp
 import android.os.Parcel
 import android.os.Parcelable
 
-/*Object containing exercise fields and constructors to create an exercise from a parcel or
+/*Data class containing exercise fields and constructors to create an exercise from a parcel or
 String -> Object Map
  */
 data class Exercise (val exerciseName: String = "", val numSets: Int, val numReps: Int, val weight: Int) : Parcelable {

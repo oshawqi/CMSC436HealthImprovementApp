@@ -97,15 +97,13 @@ class WorkoutActivity : AppCompatActivity() {
         }
 
         listViewWorkouts.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            //TODO -> (if we have time) add functionality to first show all of the exercises in the workout,
-            //and if the user clicks the same workout again in the list then launch the activity.
+
 
             //get the selected workout
             val workout = workoutListAdapter.getItem(i)
 
             //create an intent and package it up
-            val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)//TODO: NEED TO FINISH THIS ACTIVITY. IT SHOULD LIST THE WORKOUT_NAME, EXERCISES, REPS, WEIGHTS, SETS,
-            // AND THEN GIVE A WAY FOR THE USER TO FILL IN WHAT THEY ACCOMPLISHED AND THEN SAVE IT TO THE DATABASE. A HISTORY OF OLD WORKOUTS SHOULD BE ADDED TO WELCOME.KT FOR VIEWING.
+            val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)
             intent.putExtra(WORKOUT, workout)
             intent.putExtra(USER_ID, uid)
             intent.putExtra(WORKOUT_TYPE, workoutType)

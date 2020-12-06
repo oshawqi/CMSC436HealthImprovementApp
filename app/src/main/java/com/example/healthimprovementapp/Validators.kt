@@ -1,5 +1,6 @@
 package com.example.healthimprovementapp
 
+/*This validator class for user authentication is from the CMSC436 lab on Firebase*/
 class Validators {
     fun validEmail(email: String?) : Boolean {
         if (email.isNullOrEmpty()) {
@@ -17,7 +18,6 @@ class Validators {
         return emailRegex.matches(email)
     }
 
-    // TODO: Validate password
     // Passwords should be at least 4 characters with 1 letter and 1 number
     fun validPassword(password: String?) : Boolean {
         if (password.isNullOrEmpty()) {

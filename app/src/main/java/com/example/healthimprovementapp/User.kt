@@ -3,7 +3,8 @@ package com.example.healthimprovementapp
 import android.os.Parcel
 import android.os.Parcelable
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
-
+/* A data class representing a typical user of the app
+ */
 class User(val userId : String? = "", val workouts : ArrayList<Workout> = ArrayList()) : Parcelable {
 
     constructor(parcel: Parcel) : this(

@@ -11,6 +11,10 @@ import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+/*An activity responsible for creating a workout by adding exercises to it and
+then pushing to the realtime database
+ */
+
 class AddWorkoutActivity : AppCompatActivity() {
     private var workoutName : String? = null
     private  var workoutExercises = ArrayList<Exercise>()
@@ -42,7 +46,7 @@ class AddWorkoutActivity : AppCompatActivity() {
             uid = intent.getStringExtra(USER_ID)
 
             //Access the workout's node in the database
-            databaseWorkouts = FirebaseDatabase.getInstance().getReference("users").child(uid).child(workoutType)                       //TEST
+            databaseWorkouts = FirebaseDatabase.getInstance().getReference("users").child(uid).child(workoutType)
 
         } else {
             finish()
@@ -139,7 +143,6 @@ class AddWorkoutActivity : AppCompatActivity() {
     //Submits a workout, adding it to the database under the user's uid and the correct workout type
     private fun submitWorkout() {
         if (mExerciseListAdapter.count == 0) {
-            //TODO -> add an alert dialog to ask if they want to submit a workout -with no exercises
         } else {
 
             Toast.makeText(this,"Submitting",Toast.LENGTH_SHORT)
