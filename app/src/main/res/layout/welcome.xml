@@ -84,8 +84,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/historyView"
-        android:text="@string/show_history"
+        android:id="@+id/findWorkoutsView"
+        android:text="@string/find_workouts"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:layout_below="@+id/bulk_up_button"
@@ -96,12 +96,24 @@
         android:id="@+id/history_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/historyView"
+        android:layout_below="@+id/findWorkoutsView"
         android:layout_margin="10dp"
         android:background="@color/white"
         android:padding="10dp"
         android:text="@string/view_user_history"
         android:textColor="@color/black" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/discoverWorkoutsButton"
+        android:text="@string/discover_workouts"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:layout_below="@+id/findWorkoutsView"
+        android:layout_toRightOf="@+id/history_button"/>
 
     <Button
         android:id="@+id/signout_button"

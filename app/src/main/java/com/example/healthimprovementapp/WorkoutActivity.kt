@@ -1,7 +1,6 @@
 package com.example.healthimprovementapp
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -9,14 +8,15 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutList
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.workout_list.*
 import java.util.*
 
+/*Displays a list of workouts based on the workout type passed to the activity by an intent. Allows
+users to complete the workouts if they select one from the list. Workouts can be deleted if they are
+long pressed, and the user selects Yes from the dialog shown.
+ */
 class WorkoutActivity : AppCompatActivity() {
 
     private lateinit var editTextName: EditText
@@ -54,7 +54,7 @@ class WorkoutActivity : AppCompatActivity() {
         workoutListAdapter = WorkoutListAdapter(this)
         listViewWorkouts.adapter = workoutListAdapter
 
-        workouts = ArrayList<Workout>()
+        workouts = ArrayList()
     }
 
     override  fun onStart() {
@@ -106,7 +106,7 @@ class WorkoutActivity : AppCompatActivity() {
             //create an intent and package it up
             val intent = Intent(applicationContext, WorkoutExercisesActivity::class.java)//TODO: NEED TO FINISH THIS ACTIVITY. IT SHOULD LIST THE WORKOUT_NAME, EXERCISES, REPS, WEIGHTS, SETS,
             // AND THEN GIVE A WAY FOR THE USER TO FILL IN WHAT THEY ACCOMPLISHED AND THEN SAVE IT TO THE DATABASE. A HISTORY OF OLD WORKOUTS SHOULD BE ADDED TO WELCOME.KT FOR VIEWING.
-            intent.putExtra(WORKOUT_NAME, workout)
+            intent.putExtra(WORKOUT, workout)
             intent.putExtra(USER_ID, uid)
             intent.putExtra(WORKOUT_TYPE, workoutType)
             startActivity(intent)
@@ -122,6 +122,7 @@ class WorkoutActivity : AppCompatActivity() {
         }
     }
 
+    //Adds a workout to the list by starting AddWorkoutActivity for a result
     private fun addWorkout() {
         val name = editTextName.text.toString()
 
@@ -144,6 +145,9 @@ class WorkoutActivity : AppCompatActivity() {
     }
 
 
+    /*Completes adding a user to the list as long as they did not cancel their addition in
+    AddWorkoutActivity.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
@@ -165,10 +169,12 @@ class WorkoutActivity : AppCompatActivity() {
         }
     }
 
+    /*Removes a workout from the database and the list*/
     internal fun deleteWorkout(workout: Workout) {
         mWorkout.removeValue()
     }
 
+    //Takes the passed workout type from the intent and formats it so that it can be displayed on the UI
     private fun formatWorkoutType(wType : String) : String {
         var outType = wType.toLowerCase()
 
@@ -184,8 +190,8 @@ class WorkoutActivity : AppCompatActivity() {
         const val WORKOUT_NAME = "WORKOUT_NAME"
         const val ADD_WORKOUT_REQUEST = 0
         const val WORKOUT = "WORKOUT"
-        val USER_ID = "USER_ID"
-        val WORKOUT_TYPE = "WORKOUT_TYPE"
+        const val USER_ID = "USER_ID"
+        const val WORKOUT_TYPE = "WORKOUT_TYPE"
     }
 
 }

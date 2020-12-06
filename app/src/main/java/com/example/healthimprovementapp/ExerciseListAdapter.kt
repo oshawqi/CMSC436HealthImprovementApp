@@ -5,14 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.BaseAdapter
+import android.widget.RelativeLayout
+import android.widget.TextView
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
-import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 
+
+/*List adapter for exercises. Shows the exercise name and its values in a custom list view. Includes
+supporting methods for editing the list
+ */
 class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
 
-    private val exercises : ArrayList<Exercise> = ArrayList<Exercise>()
+    private val exercises : ArrayList<Exercise> = ArrayList()
 
+    //returns the view for the exercise at the given position
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         val exercise = exercises[position]
@@ -36,7 +42,7 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
         }
 
         //fill in default data in the EditTexts as hints for reps, weight, sets.
-        viewHolder.mTitleView!!.text = exercise.exerciseName.toString()
+        viewHolder.mTitleView!!.text = exercise.exerciseName
         viewHolder.mWeightView!!.text = exercise.weight.toString()
         viewHolder.mSetsView!!.text = exercise.numSets.toString()
         viewHolder.mRepsView!!.text = exercise.numReps.toString()
@@ -44,36 +50,41 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
         return viewHolder.mItemLayout!!
     }
 
+    //returns the exercise at the index position in the list
     override fun getItem(position: Int): Any {
         return exercises[position]
     }
 
+    //returns the items position as a long
     override fun getItemId(position: Int): Long {
-        //TODO -> look into saving the id for the database here and be able to retrieve it
-        //from here
         return position.toLong()
     }
 
+    //returns the total number of exercises in the current list
     override fun getCount(): Int {
         return exercises.size
     }
 
+    //adds an exercise to the list and alters the list view
     fun add(exercise : Exercise) {
         Log.i(TAG, "Adding exercise to adapter")
         exercises.add(exercise)
         notifyDataSetChanged()
     }
 
+    //adds all exercises to the list and alters the list view
     fun addAll(inExercises : List<Exercise>) {
         exercises.addAll(inExercises)
         notifyDataSetChanged()
     }
 
+    //Edits the exercise at index pos with the parameters passed into the method
     fun editExerciseAt(pos : Int, name : String, sets : Int, reps : Int, weight : Int) {
         exercises[pos] = Exercise(name, sets, reps, weight)
         notifyDataSetChanged()
     }
 
+    //removes the element at position from the list
     fun removeAt(position: Int) {
         exercises.removeAt(position)
         notifyDataSetChanged()
@@ -88,6 +99,6 @@ class ExerciseListAdapter(private val context : Context) : BaseAdapter() {
     }
 
     companion object {
-        val TAG = "Mine-ExerciseListAdapter:"
+        const val TAG = "Mine-ExerciseListAdapter:"
     }
 }

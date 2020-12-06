@@ -6,16 +6,16 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutExercisesActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.WorkoutList
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.user_history.*
-import kotlinx.android.synthetic.main.user_history.view.*
 import java.lang.Exception
 
-class UserHistoryActivity : AppCompatActivity() {
+/*Displays a list of all the workouts the user has submitted. Clicking on a workout in the list will
+allow send the user to the WorkoutExercises activity to complete it again.
+ */
+class  UserHistoryActivity : AppCompatActivity() {
 
     private lateinit var uid : String
     private var mHistoryList : ListView? = null
@@ -41,8 +41,6 @@ class UserHistoryActivity : AppCompatActivity() {
         mHistoryList!!.adapter = mListAdapter
 
         mReturnButton = findViewById(R.id.returnButton)
-
-        //mListAdapter!!.addAll(user.workouts)
 
     }
 
@@ -87,20 +85,20 @@ class UserHistoryActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Starts the WorkoutExercisesActivity so that the user can complete the selected workout again
         mHistoryList!!.setOnItemClickListener { adapterView, view, i, l ->
             val workout = mListAdapter!!.getItem(i)
             val intent = Intent(this, WorkoutExercisesActivity::class.java)
             intent.putExtra(WORKOUT_TYPE, workouts!![workout])
-            intent.putExtra(WORKOUT_NAME, workout)
+            intent.putExtra(WORKOUT, workout)
             intent.putExtra(USER_ID, uid)
             startActivity(intent)
         }
     }
     companion object {
         const val TAG = "Mine-UserHistory"
-        val USER = "USER"
         const val USER_ID = "USER_ID"
-        const val WORKOUT_NAME = "WORKOUT_NAME"
+        const val WORKOUT = "WORKOUT"
         const val WORKOUT_TYPE = "WORKOUT_TYPE"
     }
 }

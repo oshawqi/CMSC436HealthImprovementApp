@@ -1,7 +1,6 @@
 package com.example.healthimprovementapp
 
 import android.content.Intent
-import android.graphics.Color.red
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,11 +9,12 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
+/*Allows a user to register for an account using Firebase's email and password authentication.
+ */
 class RegistrationActivity : AppCompatActivity() {
 
     private var emailTV: EditText? = null
@@ -44,6 +44,9 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
+    /*Registers a user for a new account if neither field is empty and the user's input does not match
+    an already existing user account.
+     */
     private fun registerNewUser() {
 
         val email: String = emailTV!!.text.toString()
@@ -90,7 +93,7 @@ class RegistrationActivity : AppCompatActivity() {
                     progressBar!!.visibility = View.GONE
 
                     val uid = mAuth!!.currentUser!!.uid
-                    val user = User(uid, ArrayList<Workout>())
+                    val user = User(uid, ArrayList())
 
                     //Sets up user path and default workouts in database
                     addUserToDatabase(uid)
@@ -142,12 +145,8 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     companion object {
-        val TAG = "Mine-RegistrationActivity"
+        const val TAG = "Mine-RegistrationActivity"
         const val USER_ID = "USER_ID"
-        val DEFAULT_WORKOUTS = "default-workouts"
-        val BULK_UP = "BULK_UP"
-        val WEIGHT_LOSS = "WEIGHT_LOSS"
-        val ENDURANCE = "ENDURANCE"
-        val FLEXIBILITY = "FLEXIBILITY"
+        const val DEFAULT_WORKOUTS = "default-workouts"
     }
 }

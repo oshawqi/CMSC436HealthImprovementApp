@@ -1,19 +1,15 @@
 package com.example.healthimprovementapp
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.list_item.view.*
-import org.w3c.dom.Text
 
 class AddWorkoutActivity : AppCompatActivity() {
     private var workoutName : String? = null
@@ -100,6 +96,7 @@ class AddWorkoutActivity : AppCompatActivity() {
         }
     }
 
+    //Deletes an exercise from the list
     internal fun deleteExercise(pos : Int) {
         mExerciseListAdapter.removeAt(pos)
     }
@@ -139,6 +136,7 @@ class AddWorkoutActivity : AppCompatActivity() {
         }
     }
 
+    //Submits a workout, adding it to the database under the user's uid and the correct workout type
     private fun submitWorkout() {
         if (mExerciseListAdapter.count == 0) {
             //TODO -> add an alert dialog to ask if they want to submit a workout -with no exercises
@@ -159,17 +157,17 @@ class AddWorkoutActivity : AppCompatActivity() {
 
     }
 
+    //Returns to the former activity without adding any exercises to the list
     private fun cancelAddWorkout() {
         setResult(RESULT_CANCELED, null)
         finish()
     }
 
     companion object {
-        val TAG = "Mine-AddWorkoutActivity:"
+        const val TAG = "Mine-AddWorkoutActivity:"
         const val WORKOUT_NAME = "WORKOUT_NAME"
         const val EXERCISE = "EXERCISE"
-        val USER_ID = "USER_ID"
-        val WORKOUT_TYPE = "WORKOUT_TYPE"
-        const val REQUEST_CODE = 2
+        const val USER_ID = "USER_ID"
+        const val WORKOUT_TYPE = "WORKOUT_TYPE"
     }
 }

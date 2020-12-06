@@ -9,11 +9,9 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
+//Allows the user to login to their account using the Firebase email and password authentication
 class LoginActivity : AppCompatActivity() {
 
     private var userEmail: EditText? = null
@@ -37,9 +35,9 @@ class LoginActivity : AppCompatActivity() {
         loginBtn!!.setOnClickListener { loginUserAccount() }
     }
 
-    // TODO: Allow the user to log into their account
-    // If the email and password are not empty, try to log in
-    // If the login is successful, store info into intent and launch DashboardActivity
+    /*Tries to log the user into their account. Succeeds if neither field is empty, both fields
+    pass their validation, and .
+     */
     private fun loginUserAccount() {
 
         progressBar!!.visibility = View.VISIBLE

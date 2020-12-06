@@ -4,19 +4,14 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 
-class User(val userId : String? = "", val workouts : ArrayList<Workout> = ArrayList<Workout>()) : Parcelable {
+class User(val userId : String? = "", val workouts : ArrayList<Workout> = ArrayList()) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         ArrayList<Workout>().apply {
             parcel.readList(this as List<Workout>, Workout::class.java.classLoader)
         }
-    ) {
-    }
-
-    fun addWorkout(workout : Workout) {
-        workouts.add(workout)
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(userId)

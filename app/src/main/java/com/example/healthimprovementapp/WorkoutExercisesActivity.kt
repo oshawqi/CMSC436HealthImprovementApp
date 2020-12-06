@@ -36,7 +36,7 @@ class WorkoutExercisesActivity : AppCompatActivity(), EditExerciseDialogFragment
         setContentView(R.layout.activity_workout_exercise)
 
         //Get workout from the intent
-        mWorkout = intent.getParcelableExtra<Workout>(WORKOUT_NAME)
+        mWorkout = intent.getParcelableExtra(WORKOUT)
         uid = intent.getStringExtra(USER_ID)
         mWorkoutType = intent.getStringExtra(WORKOUT_TYPE)
         if (mWorkout == null) {
@@ -54,7 +54,7 @@ class WorkoutExercisesActivity : AppCompatActivity(), EditExerciseDialogFragment
         mWorkoutNameView.text = mWorkout.workoutName
 
         //Set mListView and add mSubmitButton as a footer to the list
-        mListView = findViewById<ListView>(R.id.exerciseList)
+        mListView = findViewById(R.id.exerciseList)
         mListView.setFooterDividersEnabled(true)
         mSubmitButton =
             (applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
@@ -73,10 +73,12 @@ class WorkoutExercisesActivity : AppCompatActivity(), EditExerciseDialogFragment
     override fun onStart() {
         super.onStart()
 
+        //Submits the workout
         mSubmitButton.setOnClickListener {
             submitWorkout()
         }
 
+        //Allows users to edit exercises in the workout
         mListView.setOnItemClickListener { adapterView, view, i, l ->
             val dialog = EditExerciseDialogFragment.newInstance(i,
                 (mListAdapter.getItem(i) as Exercise).exerciseName)
@@ -85,12 +87,16 @@ class WorkoutExercisesActivity : AppCompatActivity(), EditExerciseDialogFragment
 
     }
 
+    /*Inherited function from the EditExerciseListener interface that submits edits to an exercise and saves
+    the changes in the workout list*/
     override fun onDialogPositiveClick(pos: Int, name: String, sets: Int, reps: Int, weight: Int) {
         mListAdapter.editExerciseAt(pos, name, sets, reps, weight)
         mWorkout.workoutExercises[pos] = Exercise(name,sets,reps,weight)
         changesMade = true
     }
 
+    /*Inherited function from EditExerciseListener interface that shows a toast so that the user
+    knows their changes were canceled*/
     override fun onDialogNegativeClick() {
         Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show()
     }
@@ -100,33 +106,39 @@ class WorkoutExercisesActivity : AppCompatActivity(), EditExerciseDialogFragment
         mListAdapter.addAll(workout.workoutExercises)
     }
 
+    /*Submits workouts to the database if they are not edited or launches a dialog asking if the user
+    wants to submit the workout as a copy
+     */
     private fun submitWorkout() {
         if (changesMade) {
             val dialog = SubmitDialogFragment.newInstance()
             dialog.show(supportFragmentManager, "SubmitDialog")
         } else {
-            mUserDatabase.child(mWorkout.workoutId!!).setValue(mWorkout)
+            mHistoryDatabase.child(mWorkout.workoutId!!).setValue(mWorkout)
             val intent = Intent(this, Welcome::class.java)
             intent.putExtra(USER_ID, uid)
             startActivity(intent)
         }
     }
 
+    /*Inherited function from the SubmitWorkoutListener that allows the user to save their customized
+    workout as a copy in the database. The copy will be given a new Workout Id so that it can be kept
+    separate in the database.
+     */
     override fun onSubmitCopy() {
         val id = mUserDatabase.push().key
-        mUserDatabase.child(mWorkout.workoutId!!).removeValue()
-        val workout : Workout = Workout(id!!, mWorkout.workoutName, mWorkout.workoutExercises)
+        val workout : Workout = Workout(id!!, mWorkout.workoutName!!, mWorkout.workoutExercises)
         mUserDatabase.child(id!!).setValue(workout)
         mHistoryDatabase.child(id!!).setValue(workout)
         val intent = Intent(this, Welcome::class.java)
         intent.putExtra(USER_ID, uid)
         startActivity(intent)
     }
+
     companion object {
         const val TAG = "Mine-WorkoutExercisesActivity:"
-        const val WORKOUT_NAME = "WORKOUT_NAME"
-        val WORKOUT_TYPE = "WORKOUT_TYPE"
-        const val ADD_WORKOUT_REQUEST = 0
+        const val WORKOUT = "WORKOUT"
+        const val WORKOUT_TYPE = "WORKOUT_TYPE"
         const val USER_ID = "USER_ID"
     }
 }

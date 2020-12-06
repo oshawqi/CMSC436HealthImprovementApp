@@ -1,16 +1,10 @@
 package com.example.healthimprovementapp
 
-import android.app.Activity
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.app.AlertDialog
 import android.app.Dialog
-
+import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import com.example.healthimprovementapp.com.example.healthimprovementapp.Exercise
+import androidx.fragment.app.Fragment
 import com.example.healthimprovementapp.com.example.healthimprovementapp.Workout
 
 

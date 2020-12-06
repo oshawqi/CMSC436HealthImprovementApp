@@ -981,6 +981,9 @@ id direct
 id disableHome
 id disablePostScroll
 id disableScroll
+id discoverWorkoutList
+id discoverWorkoutsButton
+id discoverWorkoutsView
 id dragDown
 id dragEnd
 id dragLeft
@@ -999,6 +1002,7 @@ id exerciseName
 id exerciseNameString
 id expand_activities_button
 id expanded_menu
+id findWorkoutsView
 id fitness_goal_TextView
 id flexibility_button
 id flip
@@ -1012,7 +1016,6 @@ id groups
 id healthImprovementString
 id historyList
 id historyString
-id historyView
 id history_button
 id home
 id homeAsUp
@@ -1218,6 +1221,7 @@ layout activity_workout_exercise
 layout activity_workout_list
 layout add_workout
 layout custom_dialog
+layout discover_workouts
 layout edit_exercise_fragment
 layout exercise_list
 layout fragment_delete_dialog
@@ -1294,11 +1298,13 @@ string common_signin_button_text
 string common_signin_button_text_long
 string confirm_password
 string default_web_client_id
+string discover_workouts
 string edit_exercise
 string email
 string endurance
 string enter_a_workout_name
 string exercise_name
+string find_workouts
 string firebase_database_url
 string flexibility
 string gcm_defaultSenderId
@@ -1319,7 +1325,6 @@ string search_menu_title
 string select_an_existing_workout
 string select_workout_do_again
 string sets
-string show_history
 string signout
 string status_bar_notification_info_overflow
 string strength_training

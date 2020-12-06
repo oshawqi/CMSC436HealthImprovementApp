@@ -22,6 +22,7 @@
         <activity android:name=".Welcome" />
         <activity android:name=".AddWorkoutActivity"/>
         <activity android:name=".UserHistoryActivity"/>
+        <activity android:name=".DiscoverWorkoutsActivity"/>
 
     </application>
 

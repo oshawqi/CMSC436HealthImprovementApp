@@ -8,6 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
+/*Gives the user an option to register for an account, if they have not already, or to login to their
+existing account
+ */
 class MainActivity : AppCompatActivity() {
 
     private var registerBtn: Button? = null
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //Initializes the two button views in the UI
     private fun initializeViews() {
         registerBtn = findViewById(R.id.register)
         loginBtn = findViewById(R.id.login)

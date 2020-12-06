@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_registration.xml.flat",
-        "source": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\activity_registration.xml"
-    },
-    {
         "merged": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_submit_workout_footer.xml.flat",
         "source": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\submit_workout_footer.xml"
+    },
+    {
+        "merged": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_registration.xml.flat",
+        "source": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\activity_registration.xml"
     },
     {
         "merged": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
@@ -58,6 +58,10 @@
     {
         "merged": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_discover_workouts.xml.flat",
+        "source": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\src\\main\\res\\layout\\discover_workouts.xml"
     },
     {
         "merged": "C:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\res\\merged\\debug\\layout_add_workout.xml.flat",
