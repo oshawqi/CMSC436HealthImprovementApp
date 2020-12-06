@@ -28,3 +28,18 @@ General Rules
 1. Split the project up by activities
 2. Write tests after finishing a portion of the project so that further code can be checked properly.
 3. Check that your code passes all the tests before committing it on git.
+
+
+From MainActivity.kt
+/*"Weight Room" workout app by Owen Knott, Philip Corn, Omar Shawqi for UMD CMSC436 Fall2020
+    This app is meant to provide users a means of creating and recording custom workouts
+    to keep their bodies healthy.
+    Future functionality could include:
+        1. A means of "challenging" friends by sending a workout to them
+        2. A system of timers for cardiovascular workouts
+        3. Specific instructions and videos on how to safely perform basic workouts
+
+    Special thanks to the CMSC436 lab code, especially for the user authentication, adapters,
+    and realtime database starter code. This was modified heavily with help from Firebase.org's
+    docs to create the app as it currently stands.
+ */
