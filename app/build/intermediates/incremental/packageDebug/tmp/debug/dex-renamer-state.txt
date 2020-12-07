@@ -1,7 +1,13 @@
-#Sun Dec 06 18:25:40 EST 2020
-base.0=C\:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+#Sun Dec 06 19:02:30 EST 2020
+path.3=classes.dex
+path.2=classes.dex
 path.1=classes.dex
-renamed.1=classes2.dex
 path.0=classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+base.3=C\:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.2=C\:\\Users\\oknott\\Dropbox\\Computer Science\\cmsc436-oknott\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
+base.0=C\:\\Users\\Omar\\Documents\\CMSC436\\cmsc436-oshawqi\\CMSC436HealthImprovementApp\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex

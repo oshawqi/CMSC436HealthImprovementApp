@@ -46,7 +46,6 @@ class EditExerciseDialogFragment(val position : Int, val name : String) : Dialog
             val builder = AlertDialog.Builder(it)
             val inflater = requireActivity().layoutInflater
             val view = inflater.inflate(R.layout.edit_exercise_fragment, null)
-            val nameView = view.findViewById<TextView>(R.id.name)
             val setsView = view.findViewById<EditText>(R.id.numSets)
             val repsView = view.findViewById<EditText>(R.id.numReps)
             val weightView = view.findViewById<EditText>(R.id.weight)

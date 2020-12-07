@@ -20,7 +20,6 @@ class DiscoverWorkoutsActivity : AppCompatActivity(), AddWorkoutDialogFragment.A
     private lateinit var mDatabase : DatabaseReference
     private lateinit var mUserDatabase : DatabaseReference
     private lateinit var workouts : MutableMap<Workout, String>
-    private lateinit var userWorkouts : ArrayList<Workout>
     private lateinit var uid : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,33 +36,6 @@ class DiscoverWorkoutsActivity : AppCompatActivity(), AddWorkoutDialogFragment.A
 
     override fun onStart() {
         super.onStart()
-
-        mUserDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-                Log.i(TAG, error.toString())
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (!snapshot.exists()) { Log.i(TAG, "No data received") }
-
-                userWorkouts = ArrayList()
-                var workout : Workout? = null
-
-                for (typeData in snapshot.children) {
-                    for (workoutData in typeData.children) {
-
-                        try {
-                            workout = Workout(workoutData.value as Map<String, Object>)
-                        } catch (e : Exception) {
-                            Log.i(TAG, e.toString())
-                        } finally {
-                            userWorkouts.add(workout!!)
-                        }
-                    }
-                }
-            }
-
-        })
 
         mDatabase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -91,10 +63,6 @@ class DiscoverWorkoutsActivity : AppCompatActivity(), AddWorkoutDialogFragment.A
 
                                 try {
                                     workout = Workout(workoutData.value as Map<String, Object>)
-
-                                    if (workouts.containsKey(workout!!) || userWorkouts.contains(workout!!)) {
-                                        continue
-                                    }
                                 } catch (e : Exception) {
                                     Log.i(TAG, e.toString())
                                 } finally {
