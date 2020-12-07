@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/exerciseList" android:background="@color/white">
+    android:id="@+id/exerciseList" android:background="@drawable/button_selector">
 
     <TextView
         android:layout_width="wrap_content"
@@ -10,7 +10,6 @@
         android:text="@string/exercise_name"
         android:textSize="20dp"
         android:gravity="left"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
@@ -22,7 +21,6 @@
         android:id="@+id/exerciseName"
         android:gravity="center"
         android:textSize="20dp"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
@@ -36,7 +34,6 @@
         android:id="@+id/weight"
         android:text="@string/weight"
         android:gravity="center"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
@@ -47,7 +44,6 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:id="@+id/weightView"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:gravity="center"
         android:padding="2dp"
@@ -61,7 +57,6 @@
         android:id="@+id/sets"
         android:text="@string/sets"
         android:gravity="center"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:padding="5dp"
         android:layout_below="@+id/exerciseName"
@@ -73,7 +68,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/setsView"
         android:gravity="center"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:padding="5dp"
         android:layout_below="@+id/exerciseName"
@@ -86,7 +80,6 @@
         android:id="@+id/reps"
         android:text="@string/reps"
         android:gravity="center"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:padding="5dp"
         android:layout_below="@+id/exerciseName"
@@ -97,7 +90,6 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:id="@+id/repsView"
-        android:background="@color/black"
         android:textColor="@color/white"
         android:gravity="center"
         android:padding="5dp"

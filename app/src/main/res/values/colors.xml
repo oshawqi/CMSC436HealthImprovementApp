@@ -9,4 +9,7 @@
     <color name="black">#000000</color>
     <color name="invalid">#AA0F0F</color>
     <color name="valid">#0FAA0F</color>
+    <color name="background">#2E3032</color>
+    <color name="buttonColor">#454545</color>
+    <color name="lightGray">#989898</color>
 </resources>

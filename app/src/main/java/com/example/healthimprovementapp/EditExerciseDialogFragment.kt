@@ -54,6 +54,7 @@ class EditExerciseDialogFragment(val position : Int, val name : String) : Dialog
                 .setNegativeButton(R.string.cancel) { _,_ ->
                     listener.onDialogNegativeClick()
                 }
+                .setTitle(name)
 
                 .setPositiveButton("Submit Edits") { p0, p1 ->
                     val sets = setsView.text.toString()

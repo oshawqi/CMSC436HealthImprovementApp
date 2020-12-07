@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_main"
-    android:background="@color/black">
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/createTitle"
@@ -27,7 +27,8 @@
         android:hint="@string/enter_a_workout_name"
         android:layout_below="@id/createTitle"
         android:textColor="@color/black"
-        android:textColorHint="@color/black">
+        android:textColorHint="@color/black"
+        android:padding="5dp">
     </EditText>
 
     <Button
@@ -35,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add"
-        android:background="@color/black"
+        android:background="@drawable/button_bg"
+        android:layout_margin="10dp"
         android:textColor="@color/white"
         android:layout_below="@id/customWorkoutName">
     </Button>
@@ -56,7 +58,10 @@
         android:id="@+id/listViewWorkouts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/selectAWorkout">
+        android:layout_below="@id/selectAWorkout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
     </ListView>
 
 </RelativeLayout>
